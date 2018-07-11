@@ -19,7 +19,9 @@ public class TableManagerServiceImpl implements TableManagerService {
 
 
     public boolean createTable(String tableName) {
-        return false;
+        tableManagerDao.createTable(tableName);
+        System.out.println("表创建成功");
+        return true;
     }
 
     public boolean dropTable(String tableName) {

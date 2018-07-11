@@ -35,6 +35,9 @@ public class HelloController {
         boolean pdop_hd_reqlog = tableManagerService.checkTable("pdop_hd_reqlog");
         System.out.println(pdop_hd_reqlog);
 
+        boolean qqqqqq = tableManagerService.createTable("qqqqqq");
+        System.out.println(qqqqqq);
+
         qiaoRongService.selectQiaoRongCount(time);
         return "test";
     }

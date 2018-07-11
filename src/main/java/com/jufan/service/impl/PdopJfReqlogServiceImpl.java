@@ -1,4 +1,4 @@
-package com.jufan.service;
+package com.jufan.service.impl;
 
 import com.jufan.model.PdopJfReqlog;
 import org.springframework.stereotype.Service;
@@ -8,7 +8,7 @@ import java.util.List;
 import com.jufan.dao.PdopJfReqlogDao;
 
 @Service
-public class PdopJfReqlogService {
+public class PdopJfReqlogServiceImpl {
 
     @Resource
     private PdopJfReqlogDao pdopJfReqlogDao;

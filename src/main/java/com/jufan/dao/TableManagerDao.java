@@ -1,5 +1,6 @@
 package com.jufan.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,10 +12,10 @@ import org.springframework.stereotype.Repository;
 public interface TableManagerDao {
 
     //创建表
-    void createTable(String tableName);
+    void createTable(@Param("tableName")String tableName);
 
     //删除表
-    void dropTable(String tableName);
+    void dropTable(@Param("tableName") String tableName);
 
     //判断表是否存在
     int checkTable(String tableName);
