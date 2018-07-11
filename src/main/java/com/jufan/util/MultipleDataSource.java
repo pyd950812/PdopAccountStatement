@@ -2,7 +2,6 @@ package com.jufan.util;
 
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
-import javax.sql.DataSource;
 
 /**
  * @Author pengyd
