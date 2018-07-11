@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jufan.dao.PdopJfReqlogDao">
+
+<!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.jufan.model.PdopJfReqlog">
+        <result column="id" property="id"/>
+        <result column="product_id" property="productId"/>
+        <result column="url" property="url"/>
+        <result column="name" property="name"/>
+        <result column="cert_number" property="certNumber"/>
+        <result column="request_param" property="requestParam"/>
+        <result column="response_raw" property="responseRaw"/>
+        <result column="original_response_raw" property="originalResponseRaw"/>
+        <result column="status" property="status"/>
+        <result column="create_datetime" property="createDatetime"/>
+        <result column="create_operator_id" property="createOperatorId"/>
+        <result column="last_update_datetime" property="lastUpdateDatetime"/>
+        <result column="last_update_operator_id" property="lastUpdateOperatorId"/>
+        <result column="ext_info" property="extInfo"/>
+    </resultMap>
+
+<!--auto generated Code-->
+    <sql id="all_column">
+        id,
+        product_id,
+        url,
+        name,
+        cert_number,
+        request_param,
+        response_raw,
+        original_response_raw,
+        status,
+        create_datetime,
+        create_operator_id,
+        last_update_datetime,
+        last_update_operator_id,
+        ext_info
+    </sql>
+
+<!--auto generated Code-->
+    <insert id="insert">
+        INSERT INTO pdop_jf_reqlog
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> id, </if>
+            <if test="pojo.productId != null"> product_id, </if>
+            <if test="pojo.url != null"> url, </if>
+            <if test="pojo.name != null"> name, </if>
+            <if test="pojo.certNumber != null"> cert_number, </if>
+            <if test="pojo.requestParam != null"> request_param, </if>
+            <if test="pojo.responseRaw != null"> response_raw, </if>
+            <if test="pojo.originalResponseRaw != null"> original_response_raw, </if>
+            <if test="pojo.status != null"> status, </if>
+            <if test="pojo.createDatetime != null"> create_datetime, </if>
+            <if test="pojo.createOperatorId != null"> create_operator_id, </if>
+            <if test="pojo.lastUpdateDatetime != null"> last_update_datetime, </if>
+            <if test="pojo.lastUpdateOperatorId != null"> last_update_operator_id, </if>
+            <if test="pojo.extInfo != null"> ext_info, </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> #{pojo.id}, </if>
+            <if test="pojo.productId != null"> #{pojo.productId}, </if>
+            <if test="pojo.url != null"> #{pojo.url}, </if>
+            <if test="pojo.name != null"> #{pojo.name}, </if>
+            <if test="pojo.certNumber != null"> #{pojo.certNumber}, </if>
+            <if test="pojo.requestParam != null"> #{pojo.requestParam}, </if>
+            <if test="pojo.responseRaw != null"> #{pojo.responseRaw}, </if>
+            <if test="pojo.originalResponseRaw != null"> #{pojo.originalResponseRaw}, </if>
+            <if test="pojo.status != null"> #{pojo.status}, </if>
+            <if test="pojo.createDatetime != null"> #{pojo.createDatetime}, </if>
+            <if test="pojo.createOperatorId != null"> #{pojo.createOperatorId}, </if>
+            <if test="pojo.lastUpdateDatetime != null"> #{pojo.lastUpdateDatetime}, </if>
+            <if test="pojo.lastUpdateOperatorId != null"> #{pojo.lastUpdateOperatorId}, </if>
+            <if test="pojo.extInfo != null"> #{pojo.extInfo}, </if>
+        </trim>
+    </insert>
+
+<!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO pdop_jf_reqlog(
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.productId},
+            #{pojo.url},
+            #{pojo.name},
+            #{pojo.certNumber},
+            #{pojo.requestParam},
+            #{pojo.responseRaw},
+            #{pojo.originalResponseRaw},
+            #{pojo.status},
+            #{pojo.createDatetime},
+            #{pojo.createOperatorId},
+            #{pojo.lastUpdateDatetime},
+            #{pojo.lastUpdateOperatorId},
+            #{pojo.extInfo}
+            )
+        </foreach>
+    </insert>
+
+<!--auto generated Code-->
+    <update id="update">
+        UPDATE pdop_jf_reqlog
+        <set>
+            <if test="pojo.id != null"> id = #{pojo.id}, </if>
+            <if test="pojo.productId != null"> product_id = #{pojo.productId}, </if>
+            <if test="pojo.url != null"> url = #{pojo.url}, </if>
+            <if test="pojo.name != null"> name = #{pojo.name}, </if>
+            <if test="pojo.certNumber != null"> cert_number = #{pojo.certNumber}, </if>
+            <if test="pojo.requestParam != null"> request_param = #{pojo.requestParam}, </if>
+            <if test="pojo.responseRaw != null"> response_raw = #{pojo.responseRaw}, </if>
+            <if test="pojo.originalResponseRaw != null"> original_response_raw = #{pojo.originalResponseRaw}, </if>
+            <if test="pojo.status != null"> status = #{pojo.status}, </if>
+            <if test="pojo.createDatetime != null"> create_datetime = #{pojo.createDatetime}, </if>
+            <if test="pojo.createOperatorId != null"> create_operator_id = #{pojo.createOperatorId}, </if>
+            <if test="pojo.extInfo != null"> ext_info = #{pojo.extInfo}, </if>
+        </set>
+         WHERE id = #{pojo.id}
+    </update>
+
+<!--auto generated Code-->
+    <select id="select" resultMap="AllColumnMap">
+        SELECT <include refid="all_column"/>
+        FROM pdop_jf_reqlog
+        <where>
+            <if test="pojo.id != null"> AND id = #{pojo.id} </if>
+            <if test="pojo.productId != null"> AND product_id = #{pojo.productId} </if>
+            <if test="pojo.url != null"> AND url = #{pojo.url} </if>
+            <if test="pojo.name != null"> AND name = #{pojo.name} </if>
+            <if test="pojo.certNumber != null"> AND cert_number = #{pojo.certNumber} </if>
+            <if test="pojo.requestParam != null"> AND request_param = #{pojo.requestParam} </if>
+            <if test="pojo.responseRaw != null"> AND response_raw = #{pojo.responseRaw} </if>
+            <if test="pojo.originalResponseRaw != null"> AND original_response_raw = #{pojo.originalResponseRaw} </if>
+            <if test="pojo.status != null"> AND status = #{pojo.status} </if>
+            <if test="pojo.createDatetime != null"> AND create_datetime = #{pojo.createDatetime} </if>
+            <if test="pojo.createOperatorId != null"> AND create_operator_id = #{pojo.createOperatorId} </if>
+            <if test="pojo.lastUpdateDatetime != null"> AND last_update_datetime = #{pojo.lastUpdateDatetime} </if>
+            <if test="pojo.lastUpdateOperatorId != null"> AND last_update_operator_id = #{pojo.lastUpdateOperatorId} </if>
+            <if test="pojo.extInfo != null"> AND ext_info = #{pojo.extInfo} </if>
+        </where>
+        LIMIT 1000 
+    </select>
+
+<!--auto generated Code-->
+    <delete id="delete">
+        DELETE FROM pdop_jf_reqlog where id = #{pojo.id}
+    </delete>
+</mapper>
