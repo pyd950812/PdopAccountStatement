@@ -1,6 +1,7 @@
 package com.jufan.controller;
 
 import com.jufan.service.QiaoRongService;
+import com.jufan.service.TableManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,8 @@ public class HelloController {
 
     @Autowired
     private QiaoRongService qiaoRongService;
+    @Autowired
+    private TableManagerService tableManagerService;
 
     @RequestMapping("test")
     public String test(){
@@ -29,7 +32,14 @@ public class HelloController {
         SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM");
         String time = format.format(c.getTime());
 
+        boolean pdop_hd_reqlog = tableManagerService.checkTable("pdop_hd_reqlog");
+        System.out.println(pdop_hd_reqlog);
+
         qiaoRongService.selectQiaoRongCount(time);
         return "test";
     }
+
+
+
+
 }
