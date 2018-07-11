@@ -24,5 +24,6 @@ public class QiaoRongServiceImpl implements QiaoRongService {
         List<Map> maps = qiaoRongDao.selectQiaoRongCount(data);
         System.out.println(maps);
         return maps;
+
     }
 }
