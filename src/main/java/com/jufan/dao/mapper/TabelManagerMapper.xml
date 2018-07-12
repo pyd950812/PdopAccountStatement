@@ -3,44 +3,41 @@
 <mapper namespace="com.jufan.dao.TableManagerDao">
 
 
-
     <update id="createJfTable" parameterType="java.lang.String">
-        CREATE TABLE ${tableName}(
-          `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id',
-          `product_id` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '产品ID',
-          `url` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '请求URL',
-          `name` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '姓名',
-          `cert_number` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '身份证号码',
-          `request_param` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '请求参数',
-          `response_raw` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '返回值',
-          `original_response_raw` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '原始输出字符串',
-          `status` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '状态',
-          `create_datetime` DATETIME NOT NULL DEFAULT '1000-01-01 00:00:00' COMMENT '创建时间',
-          `create_operator_id` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '创建人',
-          `last_update_datetime` DATETIME NOT NULL DEFAULT '1000-01-01 00:00:00' COMMENT '最后修改时间',
-          `last_update_operator_id` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '最后修改人',
-          `ext_info` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '扩展信息(JSON)',
-            PRIMARY KEY (`id`)
-          )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT '${tableName}';
+       CREATE TABLE `${tableName}`(
+  "ID" varchar(36) NOT NULL,
+  "product_id" varchar(36) NOT NULL COMMENT '产品ID',
+  "URL" varchar(256) DEFAULT NULL COMMENT '请求URL',
+  "NAME" varchar(50) DEFAULT NULL COMMENT '姓名',
+  "CERT_NUMBER" varchar(50) DEFAULT NULL COMMENT '身份证号码',
+  "REQUEST_PARAM" mediumtext COMMENT '请求参数',
+  "RESPONSE_RAW" mediumtext COMMENT '返回值',
+  "ORIGINAL_RESPONSE_RAW" mediumtext COMMENT '原始输出字符串',
+  "STATUS" varchar(5) DEFAULT NULL COMMENT '状态',
+  "CREATE_DATETIME" timestamp NOT NULL DEFAULT '2000-01-01 00:00:00' COMMENT '创建时间',
+  "CREATE_OPERATOR_ID" varchar(36) DEFAULT NULL COMMENT '创建人',
+  "LAST_UPDATE_DATETIME" timestamp NOT NULL DEFAULT '2000-01-01 00:00:00' COMMENT '最后修改时间',
+  "LAST_UPDATE_OPERATOR_ID" varchar(36) DEFAULT NULL COMMENT '最后修改人',
+  "EXT_INFO" text COMMENT '扩展信息(JSON)',
+  PRIMARY KEY ("ID")
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
     </update>
 
     <update id="createQueryTable" parameterType="java.lang.String">
-        CREATE TABLE ${tableName}(
-            `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id',
-            `product_id` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '产品id',
-            `org_id` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '组织id',
-            `user_id` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '操作人id',
-            `data_source_id` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '数据库id',
-            `jf_reqlog_id` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '结果id',
-            `batch_id` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '批次id',
-            `request_param` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '请求参数',
-            `create_datetime` DATETIME NOT NULL DEFAULT '1000-01-01 00:00:00' COMMENT '创建日期',
-            `query_type` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '查询类型',
-            `ids` VARCHAR(50) NOT NULL DEFAULT '' COMMENT 'ids',
-            `group_sql` VARCHAR(50) NOT NULL DEFAULT '' COMMENT 'groupSql',
-            `is_charge` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '是否计费',
-            PRIMARY KEY (`id`)
-        )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT '${tableName}';
+        CREATE TABLE `${tableName}`  (
+  "ID" varchar(36) NOT NULL,
+  "PRODUCT_ID" varchar(36) NOT NULL COMMENT '产品id',
+  "ORG_ID" varchar(36) NOT NULL COMMENT '组织id',
+  "USER_ID" varchar(36) NOT NULL COMMENT '操作人id',
+  "DATA_SOURCE_ID" varchar(36) DEFAULT NULL COMMENT '数据库id',
+  "JF_REQLOG_ID" varchar(36) NOT NULL COMMENT '结果id',
+  "BATCH_ID" varchar(36) NOT NULL COMMENT '批次id',
+  "REQUEST_PARAM" mediumtext COMMENT '请求参数',
+  "QUERY_TYPE" varchar(2) DEFAULT NULL COMMENT '查询类型，目前四种(1:单产品单用户,2:单产品多用户,3:多产品单用户,4:多产品多用户)',
+  "CREATE_DATETIME" timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建日期',
+  "IS_CHARGE" varchar(2) DEFAULT NULL COMMENT '是否计费(空：表示未统计；1：计费；2：不计费)',
+  PRIMARY KEY ("ID")
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
     </update>
 
     <update id="dropTable" parameterType="java.lang.String">
@@ -55,7 +52,6 @@
       WHERE
       TABLE_NAME = #{tableName};
     </select>
-
 
 
 </mapper>

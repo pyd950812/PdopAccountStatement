@@ -22,4 +22,6 @@ public interface PdopJfReqlogDao {
     //查时间区间为一个小时的数据
     List<PdopJfReqlog> queryByHour(Map<String,Object> map);
 
+    int insertJfExtList(@Param("tableName") String tableName ,@Param("pojos")List<PdopJfReqlog> pojos);
+
 }

@@ -153,4 +153,29 @@
     <select id="queryByHour" parameterType="java.util.Map" resultMap="AllColumnMap">
         SELECT * FROM pdop_jf_reqlog where CREATE_DATETIME BETWEEN #{startTime} AND #{endTime}
     </select>
+
+
+    <insert id="insertJfExtList">
+        INSERT INTO `${tableName}`(
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.productId},
+            #{pojo.url},
+            #{pojo.name},
+            #{pojo.certNumber},
+            #{pojo.requestParam},
+            #{pojo.responseRaw},
+            #{pojo.originalResponseRaw},
+            #{pojo.status},
+            #{pojo.createDatetime},
+            #{pojo.createOperatorId},
+            #{pojo.lastUpdateDatetime},
+            #{pojo.lastUpdateOperatorId},
+            #{pojo.extInfo}
+            )
+        </foreach>
+    </insert>
 </mapper>

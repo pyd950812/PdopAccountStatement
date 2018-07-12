@@ -17,4 +17,5 @@ public interface PdopJfReqlogService {
 
     List<PdopJfReqlog> selectByHour(Map<String,Object> map );
 
+    public int insertJfExtList(String tableName,List< PdopJfReqlog> pojos);
 }

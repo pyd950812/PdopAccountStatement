@@ -24,4 +24,6 @@ public interface PdopQueryLogDao {
     //用于查询时间区间一个小时的
     List<PdopQueryLog> selectByHour(Map<String,Object> map );
 
+    int insertQueryExtList(@Param("tableName")String tableName ,@Param("pojos")List< PdopQueryLog> pojos);
+
 }

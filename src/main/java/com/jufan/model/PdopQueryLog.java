@@ -28,10 +28,6 @@ public class PdopQueryLog  {
 	/** 查询类型 */
 	private String queryType;
 
-	private String ids;
-
-	private String groupSql;
-
 	/** 是否计费 */
 	private String isCharge;
 	
@@ -115,21 +111,6 @@ public class PdopQueryLog  {
   		this.queryType=queryType;
   	}
 
-	public String getGroupSql() {
-		return groupSql;
-	}
-
-	public void setGroupSql(String groupSql) {
-		this.groupSql = groupSql;
-	}
-
-	public String getIds() {
-		return ids;
-	}
-
-	public void setIds(String ids) {
-		this.ids = ids;
-	}
 
 	public String getIsCharge() {
 		return isCharge;

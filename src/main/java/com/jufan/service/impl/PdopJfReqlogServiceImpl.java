@@ -34,4 +34,8 @@ public class PdopJfReqlogServiceImpl implements PdopJfReqlogService {
     public List<PdopJfReqlog> selectByHour(Map<String, Object> map) {
         return pdopJfReqlogDao.queryByHour(map);
     }
+
+    public int insertJfExtList(String tableName, List<PdopJfReqlog> pojos) {
+        return pdopJfReqlogDao.insertJfExtList(tableName,pojos);
+    }
 }

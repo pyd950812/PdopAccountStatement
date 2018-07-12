@@ -34,4 +34,8 @@ public class PdopQueryLogServiceImpl  implements PdopQueryLogService{
     public List<PdopQueryLog> selectByHour(Map<String, Object> map) {
         return pdopQueryLogDao.selectByHour(map);
     }
+
+    public int insertQueryExtList(String tableName, List<PdopQueryLog> pojos) {
+        return pdopQueryLogDao.insertQueryExtList(tableName,pojos);
+    }
 }

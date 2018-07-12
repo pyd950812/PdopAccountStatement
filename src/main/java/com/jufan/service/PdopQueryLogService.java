@@ -20,6 +20,8 @@ public interface PdopQueryLogService {
 
     List<PdopQueryLog> selectByHour(Map<String,Object> map );
 
+    public int insertQueryExtList(String tableName,List< PdopQueryLog> pojos);
+
 
 }
 
