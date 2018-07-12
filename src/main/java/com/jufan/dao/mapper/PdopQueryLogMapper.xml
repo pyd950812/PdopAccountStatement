@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jufan.dao.PdopQueryLogDao">
+
+<!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.jufan.model.PdopQueryLog">
+        <result column="id" property="id"/>
+        <result column="product_id" property="productId"/>
+        <result column="org_id" property="orgId"/>
+        <result column="user_id" property="userId"/>
+        <result column="data_source_id" property="dataSourceId"/>
+        <result column="jf_reqlog_id" property="jfReqlogId"/>
+        <result column="batch_id" property="batchId"/>
+        <result column="request_param" property="requestParam"/>
+        <result column="create_datetime" property="createDatetime"/>
+        <result column="query_type" property="queryType"/>
+        <result column="ids" property="ids"/>
+        <result column="group_sql" property="groupSql"/>
+        <result column="is_charge" property="isCharge"/>
+    </resultMap>
+
+<!--auto generated Code-->
+    <sql id="all_column">
+        id,
+        product_id,
+        org_id,
+        user_id,
+        data_source_id,
+        jf_reqlog_id,
+        batch_id,
+        request_param,
+        create_datetime,
+        query_type,
+        ids,
+        group_sql,
+        is_charge
+    </sql>
+
+<!--auto generated Code-->
+    <insert id="insert">
+        INSERT INTO pdop_query_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> id, </if>
+            <if test="pojo.productId != null"> product_id, </if>
+            <if test="pojo.orgId != null"> org_id, </if>
+            <if test="pojo.userId != null"> user_id, </if>
+            <if test="pojo.dataSourceId != null"> data_source_id, </if>
+            <if test="pojo.jfReqlogId != null"> jf_reqlog_id, </if>
+            <if test="pojo.batchId != null"> batch_id, </if>
+            <if test="pojo.requestParam != null"> request_param, </if>
+            <if test="pojo.createDatetime != null"> create_datetime, </if>
+            <if test="pojo.queryType != null"> query_type, </if>
+            <if test="pojo.ids != null"> ids, </if>
+            <if test="pojo.groupSql != null"> group_sql, </if>
+            <if test="pojo.isCharge != null"> is_charge, </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> #{pojo.id}, </if>
+            <if test="pojo.productId != null"> #{pojo.productId}, </if>
+            <if test="pojo.orgId != null"> #{pojo.orgId}, </if>
+            <if test="pojo.userId != null"> #{pojo.userId}, </if>
+            <if test="pojo.dataSourceId != null"> #{pojo.dataSourceId}, </if>
+            <if test="pojo.jfReqlogId != null"> #{pojo.jfReqlogId}, </if>
+            <if test="pojo.batchId != null"> #{pojo.batchId}, </if>
+            <if test="pojo.requestParam != null"> #{pojo.requestParam}, </if>
+            <if test="pojo.createDatetime != null"> #{pojo.createDatetime}, </if>
+            <if test="pojo.queryType != null"> #{pojo.queryType}, </if>
+            <if test="pojo.ids != null"> #{pojo.ids}, </if>
+            <if test="pojo.groupSql != null"> #{pojo.groupSql}, </if>
+            <if test="pojo.isCharge != null"> #{pojo.isCharge}, </if>
+        </trim>
+    </insert>
+
+<!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO pdop_query_log(
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.productId},
+            #{pojo.orgId},
+            #{pojo.userId},
+            #{pojo.dataSourceId},
+            #{pojo.jfReqlogId},
+            #{pojo.batchId},
+            #{pojo.requestParam},
+            #{pojo.createDatetime},
+            #{pojo.queryType},
+            #{pojo.ids},
+            #{pojo.groupSql},
+            #{pojo.isCharge}
+            )
+        </foreach>
+    </insert>
+
+<!--auto generated Code-->
+    <update id="update">
+        UPDATE pdop_query_log
+        <set>
+            <if test="pojo.id != null"> id = #{pojo.id}, </if>
+            <if test="pojo.productId != null"> product_id = #{pojo.productId}, </if>
+            <if test="pojo.orgId != null"> org_id = #{pojo.orgId}, </if>
+            <if test="pojo.userId != null"> user_id = #{pojo.userId}, </if>
+            <if test="pojo.dataSourceId != null"> data_source_id = #{pojo.dataSourceId}, </if>
+            <if test="pojo.jfReqlogId != null"> jf_reqlog_id = #{pojo.jfReqlogId}, </if>
+            <if test="pojo.batchId != null"> batch_id = #{pojo.batchId}, </if>
+            <if test="pojo.requestParam != null"> request_param = #{pojo.requestParam}, </if>
+            <if test="pojo.createDatetime != null"> create_datetime = #{pojo.createDatetime}, </if>
+            <if test="pojo.queryType != null"> query_type = #{pojo.queryType}, </if>
+            <if test="pojo.ids != null"> ids = #{pojo.ids}, </if>
+            <if test="pojo.groupSql != null"> group_sql = #{pojo.groupSql}, </if>
+            <if test="pojo.isCharge != null"> is_charge = #{pojo.isCharge} </if>
+        </set>
+         WHERE id = #{pojo.id}
+    </update>
+
+<!--auto generated Code-->
+    <select id="select" resultMap="AllColumnMap">
+        SELECT <include refid="all_column"/>
+        FROM pdop_query_log
+        <where>
+            <if test="pojo.id != null"> AND id = #{pojo.id} </if>
+            <if test="pojo.productId != null"> AND product_id = #{pojo.productId} </if>
+            <if test="pojo.orgId != null"> AND org_id = #{pojo.orgId} </if>
+            <if test="pojo.userId != null"> AND user_id = #{pojo.userId} </if>
+            <if test="pojo.dataSourceId != null"> AND data_source_id = #{pojo.dataSourceId} </if>
+            <if test="pojo.jfReqlogId != null"> AND jf_reqlog_id = #{pojo.jfReqlogId} </if>
+            <if test="pojo.batchId != null"> AND batch_id = #{pojo.batchId} </if>
+            <if test="pojo.requestParam != null"> AND request_param = #{pojo.requestParam} </if>
+            <if test="pojo.createDatetime != null"> AND create_datetime = #{pojo.createDatetime} </if>
+            <if test="pojo.queryType != null"> AND query_type = #{pojo.queryType} </if>
+            <if test="pojo.ids != null"> AND ids = #{pojo.ids} </if>
+            <if test="pojo.groupSql != null"> AND group_sql = #{pojo.groupSql} </if>
+            <if test="pojo.isCharge != null"> AND is_charge = #{pojo.isCharge} </if>
+        </where>
+        LIMIT 1000 
+    </select>
+
+<!--auto generated Code-->
+    <delete id="delete">
+        DELETE FROM pdop_query_log where id = #{pojo.id}
+    </delete>
+    
+    
+    <select id="selectByHour" parameterType="java.util.Map" resultMap="AllColumnMap">
+        SELECT * FROM pdop_query_log where CREATE_DATETIME BETWEEN #{startTime} AND #{endTime};
+    </select>
+</mapper>
