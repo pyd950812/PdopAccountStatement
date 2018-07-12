@@ -18,7 +18,7 @@ public interface PdopQueryLogService {
 
     public int update(PdopQueryLog pojo);
 
-    List<Object> selectByHour(Map<String,Object> map );
+    List<PdopQueryLog> selectByHour(Map<String,Object> map );
 
 
 }

@@ -15,6 +15,6 @@ public interface PdopJfReqlogService {
 
     public int update(PdopJfReqlog pojo);
 
-    List<Object> selectByHour(Map<String,Object> map );
+    List<PdopJfReqlog> selectByHour(Map<String,Object> map );
 
 }

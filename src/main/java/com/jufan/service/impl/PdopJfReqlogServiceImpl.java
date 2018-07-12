@@ -31,7 +31,7 @@ public class PdopJfReqlogServiceImpl implements PdopJfReqlogService {
         return pdopJfReqlogDao.update(pojo);
     }
 
-    public List<Object> selectByHour(Map<String, Object> map) {
+    public List<PdopJfReqlog> selectByHour(Map<String, Object> map) {
         return pdopJfReqlogDao.queryByHour(map);
     }
 }

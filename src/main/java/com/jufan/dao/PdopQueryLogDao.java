@@ -22,6 +22,6 @@ public interface PdopQueryLogDao {
     int update(@Param("pojo") PdopQueryLog pojo);
 
     //用于查询时间区间一个小时的
-    List<Object> selectByHour(Map<String,Object> map );
+    List<PdopQueryLog> selectByHour(Map<String,Object> map );
 
 }
