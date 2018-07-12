@@ -1,23 +1,37 @@
-package com.jufan.service;
+package com.jufan.service.impl;
 
+import com.jufan.dao.PdopJfReqlogDao;
 import com.jufan.model.PdopJfReqlog;
+import com.jufan.service.PdopJfReqlogService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
+
 import java.util.List;
 import java.util.Map;
 
-import com.jufan.dao.PdopJfReqlogDao;
+@Service
+public class PdopJfReqlogServiceImpl implements PdopJfReqlogService {
 
-public interface PdopJfReqlogService {
+    @Autowired
+    private PdopJfReqlogDao pdopJfReqlogDao;
 
-    public int insert(PdopJfReqlog pojo);
+    public int insert(PdopJfReqlog pojo) {
+        return pdopJfReqlogDao.insert(pojo);
+    }
 
-    public int insertList(List< PdopJfReqlog> pojos);
+    public int insertList(List<PdopJfReqlog> pojos) {
+        return pdopJfReqlogDao.insertList(pojos);
+    }
 
-    public List<PdopJfReqlog> select(PdopJfReqlog pojo);
+    public List<PdopJfReqlog> select(PdopJfReqlog pojo) {
+        return pdopJfReqlogDao.select(pojo);
+    }
 
-    public int update(PdopJfReqlog pojo);
+    public int update(PdopJfReqlog pojo) {
+        return pdopJfReqlogDao.update(pojo);
+    }
 
-    List<Object> selectByHour(Map<String,Object> map );
-
+    public List<Object> selectByHour(Map<String, Object> map) {
+        return pdopJfReqlogDao.queryByHour(map);
+    }
 }
