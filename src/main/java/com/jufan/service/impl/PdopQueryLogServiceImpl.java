@@ -31,7 +31,7 @@ public class PdopQueryLogServiceImpl  implements PdopQueryLogService{
         return pdopQueryLogDao.update(pojo);
     }
 
-    public List<Object> selectByHour(Map<String, Object> map) {
+    public List<PdopQueryLog> selectByHour(Map<String, Object> map) {
         return pdopQueryLogDao.selectByHour(map);
     }
 }

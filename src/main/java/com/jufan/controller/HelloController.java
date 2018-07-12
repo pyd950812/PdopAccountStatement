@@ -1,6 +1,7 @@
 package com.jufan.controller;
 
 import com.jufan.service.PdopJfReqlogService;
+import com.jufan.service.PdopQueryLogService;
 import com.jufan.service.QiaoRongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,8 @@ public class HelloController {
     @Autowired
     private PdopJfReqlogService pdopJfReqlogService;
 
+    @Autowired
+    private PdopQueryLogService pdopQueryLogService;
     @RequestMapping("test")
     public String test(){
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!");
@@ -37,7 +40,8 @@ public class HelloController {
         map.put("endTime",time);
 
         pdopJfReqlogService.selectByHour(map);
-        System.out.println(pdopJfReqlogService.selectByHour(map).size());
+        pdopQueryLogService.selectByHour(map);
+        System.out.println(pdopJfReqlogService.selectByHour(map).size()+"!!"+pdopQueryLogService.selectByHour(map).size());
 
         qiaoRongService.selectQiaoRongCount(time);
         return "test";

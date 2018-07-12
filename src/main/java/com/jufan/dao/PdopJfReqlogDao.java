@@ -20,6 +20,6 @@ public interface PdopJfReqlogDao {
 
     int update(@Param("pojo") PdopJfReqlog pojo);
     //查时间区间为一个小时的数据
-    List<Object> queryByHour(Map<String,Object> map);
+    List<PdopJfReqlog> queryByHour(Map<String,Object> map);
 
 }
