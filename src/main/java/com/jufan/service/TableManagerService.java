@@ -1,12 +1,20 @@
 package com.jufan.service;
 
+
+/**
+ * @Author pengyd
+ * @Date 2018/7/11 14:47
+ * @function:
+ */
 public interface TableManagerService {
 
     //创建表
-    public boolean createTable();
-    //删除表
-    public boolean dropTable();
+    boolean createTable(String tableName);
 
-    public boolean checkTable();
+    //删除表
+    boolean dropTable(String tableName);
+
+    //判断表是否存在
+    boolean checkTable(String tableName);
 
 }
