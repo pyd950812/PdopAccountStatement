@@ -148,4 +148,9 @@
     <delete id="delete">
         DELETE FROM pdop_jf_reqlog where id = #{pojo.id}
     </delete>
+
+
+    <select id="queryByHour" parameterType="java.util.Map" resultMap="AllColumnMap">
+        SELECT * FROM pdop_jf_reqlog where CREATE_DATETIME BETWEEN #{startTime} AND #{endTime}
+    </select>
 </mapper>

@@ -4,29 +4,20 @@ import com.jufan.model.PdopJfReqlog;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 import com.jufan.dao.PdopJfReqlogDao;
 
-@Service
-public class PdopJfReqlogService {
+public interface PdopJfReqlogService {
 
-    @Resource
-    private PdopJfReqlogDao pdopJfReqlogDao;
+    public int insert(PdopJfReqlog pojo);
 
-    public int insert(PdopJfReqlog pojo){
-        return pdopJfReqlogDao.insert(pojo);
-    }
+    public int insertList(List< PdopJfReqlog> pojos);
 
-    public int insertList(List< PdopJfReqlog> pojos){
-        return pdopJfReqlogDao.insertList(pojos);
-    }
+    public List<PdopJfReqlog> select(PdopJfReqlog pojo);
 
-    public List<PdopJfReqlog> select(PdopJfReqlog pojo){
-        return pdopJfReqlogDao.select(pojo);
-    }
+    public int update(PdopJfReqlog pojo);
 
-    public int update(PdopJfReqlog pojo){
-        return pdopJfReqlogDao.update(pojo);
-    }
+    List<Object> selectByHour(Map<String,Object> map );
 
 }
