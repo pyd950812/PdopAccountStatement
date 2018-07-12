@@ -2,6 +2,7 @@ package com.jufan.service.impl;
 
 import com.jufan.dao.TableManagerDao;
 import com.jufan.service.TableManagerService;
+import com.jufan.util.ReturnData;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -18,14 +19,61 @@ public class TableManagerServiceImpl implements TableManagerService {
     private TableManagerDao tableManagerDao;
 
 
-    public boolean createTable(String tableName) {
-        tableManagerDao.createTable(tableName);
-        System.out.println("表创建成功");
-        return true;
+    /**
+     * 创建Jf表
+     * @param tableName
+     * @return
+     */
+    public ReturnData createJfTable(String tableName) {
+        ReturnData rd = new ReturnData();
+        try {
+            tableManagerDao.createJfTable(tableName);
+            rd.setCode("OK");
+            rd.setMsg("创建"+tableName+"表成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            rd.setCode("ERROE");
+            rd.setMsg("创建表失败！");
+        }
+        return rd;
     }
 
-    public boolean dropTable(String tableName) {
-        return false;
+    /**
+     * 创建Query表
+     * @param tableName
+     * @return
+     */
+    public ReturnData createQueryTable(String tableName) {
+        ReturnData rd = new ReturnData();
+        try {
+            tableManagerDao.createQueryTable(tableName);
+            rd.setCode("OK");
+            rd.setMsg("创建"+tableName+"表成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            rd.setCode("ERROE");
+            rd.setMsg("创建表失败！");
+        }
+        return rd;
+    }
+
+    /**
+     * 删除表
+     * @param tableName
+     * @return
+     */
+    public ReturnData dropTable(String tableName) {
+        ReturnData rd = new ReturnData();
+        try {
+            tableManagerDao.dropTable(tableName);
+            rd.setCode("OK");
+            rd.setMsg("删除"+tableName+"表成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            rd.setCode("ERROE");
+            rd.setMsg("删除表失败！");
+        }
+        return rd;
     }
 
     /**
@@ -34,7 +82,6 @@ public class TableManagerServiceImpl implements TableManagerService {
      * @return
      */
     public boolean checkTable(String tableName) {
-        System.out.println("!!!!!!!!!!");
         int i = tableManagerDao.checkTable(tableName);
         //如果返回1的话，说明表已经存在；  否则表不存在
         if(i == 1){

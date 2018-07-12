@@ -11,8 +11,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TableManagerDao {
 
-    //创建表
-    void createTable(@Param("tableName")String tableName);
+    //创建Jf表
+    void createJfTable(@Param("tableName")String tableName);
+
+    //创建Query表
+    void createQueryTable(@Param("tableName")String tableName);
 
     //删除表
     void dropTable(@Param("tableName") String tableName);
