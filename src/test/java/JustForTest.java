@@ -20,7 +20,7 @@ import java.util.*;
  * @function:
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-mybatis.xml" })
+@ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 public class JustForTest {
 
     @Autowired
@@ -33,20 +33,21 @@ public class JustForTest {
     private TableManagerService tableManagerService;
 
     public static void main(String[] args) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+/*        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         calendar.add(Calendar.DAY_OF_MONTH, -3);
         date = calendar.getTime();
-        System.out.println(sdf.format(date));
+        System.out.println(sdf.format(date));*/
+
     }
 
     @Test
     public void test() {
 //        tableManagerService.createTable("qqqqq");
 //        tableManagerService.createJfTable("qqqqq");
-        System.out.println("进入定时任务，每隔一个小时拉取数据");
+       /* System.out.println("进入定时任务，每隔一个小时拉取数据");
         Calendar ca = Calendar.getInstance();
         ca.set(Calendar.MINUTE, 0);
         ca.set(Calendar.SECOND, 0);
@@ -100,9 +101,18 @@ public class JustForTest {
                 e.printStackTrace();
             }
 
+*/
 
-        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+        Date date = new Date();
+        date.setMonth(date.getMonth() - 1);
+        String startDate = sdf.format(date);
+        String jfTableName = "pdop_data_jfext_" + startDate;
+        String queryTableName = "pdop_data_queryext_" + startDate;
+        System.out.println(jfTableName + "" + queryTableName);
 
-
+        merchantAccountService.getMerchantCountByOrgId("10001");
     }
+
+
 }

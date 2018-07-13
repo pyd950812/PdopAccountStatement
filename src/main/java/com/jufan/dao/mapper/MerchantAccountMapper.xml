@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jufan.dao.QiaoRongDao">
+<mapper namespace="com.jufan.dao.MerchantAccountDao">
 
     <select id="getAccountDetailByOrgId" parameterType="java.lang.String" resultType="java.util.Map">
 
-        SELECT * FROM pdop_product
+        SELECT  count(q.product_id) as num, q.product_id  FROM `${jfTableName}` j , `${queryTableName}` q where q.jf_reqlog_id =j.id
+        AND j.ORIGINAL_RESPONSE_RAW is NOT NULL
+        AND q.is_charge ='1'
+        AND q.org_id=#{orgId}
+
+    </select>
+
+
+    <select id="getProductNameById" parameterType="java.lang.String" resultType="java.util.Map">
+
+        SELECT p.name,p.price from pdop_product p where p.id = #{id}
 
     </select>
 
