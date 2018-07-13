@@ -29,6 +29,7 @@ public class TimedTask {
     }
 
 
+    //每个小时将query和jf表里的数据拉到新的拓展表里
     public void queryDataByAnHour() {
         System.out.println("进入定时任务，每隔一个小时拉取数据");
         Calendar ca = Calendar.getInstance();
@@ -86,6 +87,39 @@ public class TimedTask {
 
         }
 
+    }
+
+
+
+    //每个月初删掉三个月之前的拓展表表
+    public void dropTableByMonth() {
+       //获取当前月的时间
+        Calendar ca = Calendar.getInstance();
+        ca.set(Calendar.MINUTE, 0);
+        ca.set(Calendar.SECOND, 0);
+        ca.set(Calendar.MONTH, ca.get(Calendar.MONTH)-3);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+        String suffix=sdf.format(ca.getTime());
+        System.out.println(suffix);
+        String jfTableName="pdop_data_jfext_"+suffix;
+        String queryTableName="pdop_data_queryext_"+suffix;
+
+        try {
+            Boolean jf =tableManagerService.checkTable(jfTableName);
+            Boolean query=tableManagerService.checkTable(queryTableName);
+
+            if(query==true){
+                tableManagerService.dropTable(queryTableName);
+            }
+
+            if(jf==true){
+                tableManagerService.dropTable(jfTableName);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
 
 
 
@@ -93,8 +127,11 @@ public class TimedTask {
     }
 
 
+
+
+
     public static void main(String[] args) {
-        Calendar ca = Calendar.getInstance();
+      /*  Calendar ca = Calendar.getInstance();
         ca.set(Calendar.MINUTE, 0);
         ca.set(Calendar.SECOND, 0);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -115,7 +152,8 @@ public class TimedTask {
 
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM");
         Date d =new Date();
-        System.out.println(sdf1.format(d));
+        System.out.println(sdf1.format(d));*/
+
 
     }
 }
