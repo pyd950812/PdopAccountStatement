@@ -19,31 +19,54 @@
     <!--定时任务的主类-->
     <bean id="timedTask" class="com.jufan.Timer.TimedTask"></bean>
 
-    <!--每天整点执行-->
-    <!--JobDetail的配 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程-->
-    <bean id="timedTaskJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref="timedTask"></property>
-        <property name="targetMethod" value="queryDataByAnHour"></property>
-        <property name="concurrent" value="false"></property>
-    </bean>
-    <!-- quartz-2.x的配置 -->
-    <bean id="timedTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="timedTaskJob" />
-        <property name="cronExpression" value="0 0 0/1 * * ?" />
-    </bean>
+    <!--&lt;!&ndash;每天整点执行&ndash;&gt;-->
+    <!--&lt;!&ndash;JobDetail的配 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程&ndash;&gt;-->
+    <!--<bean id="timedTaskJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
+        <!--<property name="targetObject" ref="timedTask"></property>-->
+        <!--<property name="targetMethod" value="queryDataByAnHour"></property>-->
+        <!--<property name="concurrent" value="false"></property>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash; quartz-2.x的配置 &ndash;&gt;-->
+    <!--<bean id="timedTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">-->
+        <!--<property name="jobDetail" ref="timedTaskJob" />-->
+        <!--<property name="cronExpression" value="0 0 0/1 * * ?" />-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;每月月初执行&ndash;&gt;-->
+    <!--<bean id="timedTaskJob2" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
+        <!--<property name="targetObject" ref="timedTask"></property>-->
+        <!--<property name="targetMethod" value="dropTableByMonth"></property>-->
+        <!--<property name="concurrent" value="false"></property>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash; quartz-2.x的配置 &ndash;&gt;-->
+    <!--<bean id="timedTaskTrigger2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">-->
+        <!--<property name="jobDetail" ref="timedTaskJob2" />-->
+        <!--<property name="cronExpression" value="0 0 1 1 * ?" />-->
+    <!--</bean>-->
+
+
 
     <!--每月月初执行-->
-    <bean id="timedTaskJob2" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+    <bean id="timedTaskJob3" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="timedTask"></property>
-        <property name="targetMethod" value="dropTableByMonth"></property>
+        <property name="targetMethod" value="qiaoRongTask"></property>
         <property name="concurrent" value="false"></property>
     </bean>
     <!-- quartz-2.x的配置 -->
-    <bean id="timedTaskTrigger2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="timedTaskJob2" />
-        <property name="cronExpression" value="0 0 1 1 * ?" />
+    <bean id="timedTaskTrigger3" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="timedTaskJob3" />
+        <property name="cronExpression" value="0 39 11 13 * ?" />
     </bean>
 
+
+    <bean id="startQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="timedTaskTrigger3" />
+            </list>
+        </property>
+        <property name="waitForJobsToCompleteOnShutdown" value="true"/>
+    </bean>
 
 
 
