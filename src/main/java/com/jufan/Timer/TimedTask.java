@@ -29,7 +29,9 @@ public class TimedTask {
     }
 
 
-    //每个小时将query和jf表里的数据拉到新的拓展表里
+    /**
+     *  每个小时将query和jf表里的数据拉到新的拓展表里
+     */
     public void queryDataByAnHour() {
         System.out.println("进入定时任务，每隔一个小时拉取数据");
         Calendar ca = Calendar.getInstance();
@@ -90,8 +92,9 @@ public class TimedTask {
     }
 
 
-
-    //每个月初删掉三个月之前的拓展表表
+    /**
+     *     每个月初删掉三个月之前的拓展表表  每月1号1点执行
+     */
     public void dropTableByMonth() {
        //获取当前月的时间
         Calendar ca = Calendar.getInstance();
