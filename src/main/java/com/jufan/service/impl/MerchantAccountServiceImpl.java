@@ -46,11 +46,17 @@ public class MerchantAccountServiceImpl implements MerchantAccountService {
                         if (result.containsKey("product_id") && result.containsKey("num")) {
                             String productId = result.get("product_id") != null ? result.get("product_id").toString() : "";
                             String count = result.get("num").toString();
+                            Integer num = Integer.parseInt(count);
                             if (productId != null && productId != "" && count != "" && count != null) {
                                 Map<String, Object> productMap = merchantAccountDao.getProductNameById(productId);
-                                System.out.println(productMap.get("name").toString() + productMap.get("price"));
-
-
+                                if (productMap.containsKey("name") && productMap.containsKey("price")) {
+                                    String productName = productMap.get("name").toString();
+                                    String price = productMap.get("price").toString();
+                                    //价格类型要转化
+                                    Double productPrice = Double.parseDouble(price);
+                                    Double totalMonthPrice = productPrice * num;
+                                    System.out.println("产品名:" + productName + " ====价格：" + productPrice + " ===月调用次数:" + num + " ===月总账单:" + totalMonthPrice);
+                                }
                             }
                         }
                     }
