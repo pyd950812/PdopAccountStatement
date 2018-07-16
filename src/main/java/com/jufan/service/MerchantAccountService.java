@@ -14,7 +14,7 @@ public interface MerchantAccountService {
     /**
      * 将商户的信息生成Excle  入参商户Id
      */
-    void buildExcel(String id);
+    void buildAccountExcelByOrgId(String id);
 
 
 }

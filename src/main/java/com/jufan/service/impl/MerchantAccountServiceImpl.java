@@ -96,7 +96,8 @@ public class MerchantAccountServiceImpl implements MerchantAccountService {
     /**
      * 将商户的信息生成Excle  入参商户Id
      */
-    public void buildExcel(String id) {
+    public void buildAccountExcelByOrgId(String id) {
+        //获取本月上一个月的账单数据
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
