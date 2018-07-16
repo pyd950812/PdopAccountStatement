@@ -1,5 +1,6 @@
 package com.jufan.controller;
 
+import com.jufan.service.MerchantAccountService;
 import com.jufan.service.PdopJfReqlogService;
 import com.jufan.service.PdopQueryLogService;
 import com.jufan.service.QiaoRongService;
@@ -25,9 +26,13 @@ public class HelloController {
     private QiaoRongService qiaoRongService;
     @Autowired
     private PdopJfReqlogService pdopJfReqlogService;
-
     @Autowired
     private PdopQueryLogService pdopQueryLogService;
+    @Autowired
+    private MerchantAccountService merchantAccountService;
+
+
+
     @RequestMapping("test")
     public String test(){
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!");
@@ -46,4 +51,13 @@ public class HelloController {
         qiaoRongService.selectQiaoRongCount(time);
         return "test";
     }
+
+
+
+    @RequestMapping("ff")
+    public String ff(){
+        merchantAccountService.buildExcel("10001");
+        return "test";
+    }
+
 }

@@ -17,4 +17,9 @@ public interface MerchantAccountDao {
       */
      Map<String,Object>  getProductNameById(@Param("id") String id);
 
+     /**
+      * 根据商户Id来查询商户名字
+      */
+     String getMerchantNameById(@Param("id")String id);
+
 }

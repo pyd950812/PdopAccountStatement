@@ -18,4 +18,8 @@
 
     </select>
 
+    <select id="getMerchantNameById" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT NAME FROM pdop_merchant WHERE id = #{id}
+    </select>
+
 </mapper>

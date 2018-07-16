@@ -83,8 +83,8 @@ public class TableManagerServiceImpl implements TableManagerService {
      */
     public boolean checkTable(String tableName) {
         int i = tableManagerDao.checkTable(tableName);
-        //如果返回1的话，说明表已经存在；  否则表不存在
-        if(i == 1){
+        //如果返回0，说明表不存在，反之则反
+        if(i != 0){
             return true;
         }else {
             return false;
