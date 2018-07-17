@@ -39,7 +39,7 @@ public class TimedTask {
         ca.set(Calendar.MINUTE, 0);
         ca.set(Calendar.SECOND, 0);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM");
         String suffix = sdf1.format(new Date());
         //当前时间小时整点
         Date endDate = ca.getTime();
