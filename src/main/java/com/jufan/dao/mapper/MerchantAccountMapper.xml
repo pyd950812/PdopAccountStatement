@@ -8,6 +8,8 @@
         AND j.ORIGINAL_RESPONSE_RAW is NOT NULL
         AND q.is_charge ='1'
         AND q.org_id=#{orgId}
+        GROUP BY
+        q.product_id
 
     </select>
 

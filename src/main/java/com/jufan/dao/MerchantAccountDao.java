@@ -22,4 +22,5 @@ public interface MerchantAccountDao {
       */
      String getMerchantNameById(@Param("id")String id);
 
+
 }

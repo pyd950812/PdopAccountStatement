@@ -13,6 +13,12 @@ import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+
+/**
+ * @Author gaokun
+ * @Date 2018/7/17 17:47
+ * @function:  该类用于商户月账单查询
+ */
 @Service
 public class MerchantAccountServiceImpl implements MerchantAccountService {
 
@@ -56,7 +62,7 @@ public class MerchantAccountServiceImpl implements MerchantAccountService {
                             String productId = result.get("product_id") != null ? result.get("product_id").toString() : "";//产品ID
                             String count = result.get("num").toString();//调用次数
                             Integer num = Integer.parseInt(count);
-                            if (productId != null && productId != "" && count != "" && count != null) {
+                            if (productId != null && !productId.equals("") && !count.equals("")&& count != null) {
                                 Map<String, Object> productMap = merchantAccountDao.getProductNameById(productId);
                                 if (productMap.containsKey("name") && productMap.containsKey("price")) {
                                     String productName = productMap.get("name").toString();//产品名称

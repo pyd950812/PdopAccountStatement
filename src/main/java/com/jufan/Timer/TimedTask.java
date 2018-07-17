@@ -12,6 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * @Author gaokun
+ * @Date 2018/7/17 17:47
+ * @function:  该类用于定时任务获取数据
+ */
 public class TimedTask {
 
     @Autowired
@@ -22,13 +27,6 @@ public class TimedTask {
     private PdopJfReqlogService pdopJfReqlogService;
     @Autowired
     private TableManagerService tableManagerService;
-
-
-    public void qiaoRongTask() {
-        System.out.println("进入乔融定时任务=================");
-
-    }
-
 
     /**
      * 每个小时将query和jf表里的数据拉到新的拓展表里
