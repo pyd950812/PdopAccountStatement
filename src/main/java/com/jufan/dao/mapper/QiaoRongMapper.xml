@@ -8,4 +8,10 @@
 
     </select>
 
+
+    <select id="selectRiskCount" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT count(*) from tb_shcis_reqlog
+        WHERE  DATE_FORMAT(REQUEST_TIME,'%Y-%m') = #{date}
+    </select>
+
 </mapper>

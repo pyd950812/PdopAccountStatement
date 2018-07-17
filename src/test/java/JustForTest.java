@@ -1,3 +1,4 @@
+import com.jufan.dao.QiaoRongDao;
 import com.jufan.model.PdopJfReqlog;
 import com.jufan.model.PdopQueryLog;
 import com.jufan.service.MerchantAccountService;
@@ -31,6 +32,8 @@ public class JustForTest {
     private PdopJfReqlogService pdopJfReqlogService;
     @Autowired
     private TableManagerService tableManagerService;
+    @Autowired
+    private QiaoRongDao qiaoRongDao;
 
     public static void main(String[] args) {
 /*        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -112,6 +115,14 @@ public class JustForTest {
         System.out.println(jfTableName + "" + queryTableName);
 
         merchantAccountService.getMerchantCountByOrgId("10001");
+    }
+
+
+    @Test
+    public void tttt(){
+
+
+
     }
 
 

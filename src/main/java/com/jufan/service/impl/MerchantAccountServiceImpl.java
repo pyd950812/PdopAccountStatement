@@ -77,8 +77,6 @@ public class MerchantAccountServiceImpl implements MerchantAccountService {
                                     proMap.put("num", num);
                                     proMap.put("totalMonthPrice", totalMonthPrice);
                                     list.add(proMap);
-
-
                                 }
                             }
                         }

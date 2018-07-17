@@ -14,5 +14,8 @@ import java.util.Map;
 public interface QiaoRongDao {
 
     //计算乔融每个月产品的调用量
-    List<Map> selectQiaoRongCount(String data);
+    List<Map> selectQiaoRongCount(String date);
+
+    //计算risk库中的调用量
+    String selectRiskCount(String date);
 }

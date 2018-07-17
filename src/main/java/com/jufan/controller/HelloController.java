@@ -56,7 +56,8 @@ public class HelloController {
 
     @RequestMapping("ff")
     public String ff(){
-        merchantAccountService.buildExcel("c738ba0527f940c29847b893f3e33681");
+//        merchantAccountService.buildAccountExcelByOrgId("c738ba0527f940c29847b893f3e33681");
+        qiaoRongService.selectQiaoRongCount("ss");
         return "test";
     }
 
