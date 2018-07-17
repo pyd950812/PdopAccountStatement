@@ -48,7 +48,6 @@ public class HelloController {
         pdopQueryLogService.selectByHour(map);
         System.out.println(pdopJfReqlogService.selectByHour(map).size()+"!!"+pdopQueryLogService.selectByHour(map).size());
 
-        qiaoRongService.selectQiaoRongCount(time);
         return "test";
     }
 
@@ -56,8 +55,8 @@ public class HelloController {
 
     @RequestMapping("ff")
     public String ff(){
-//        merchantAccountService.buildAccountExcelByOrgId("c738ba0527f940c29847b893f3e33681");
-        qiaoRongService.selectQiaoRongCount("ss");
+        merchantAccountService.buildAccountExcelByOrgId("c738ba0527f940c29847b893f3e33681");
+        qiaoRongService.selectQiaoRongCount();
         return "test";
     }
 

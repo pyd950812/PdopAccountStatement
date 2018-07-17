@@ -13,6 +13,6 @@ import java.util.Map;
 public interface QiaoRongService {
 
     //计算乔融每个月产品的调用量
-    List<Map<String, Object>>  selectQiaoRongCount(String data);
+    List<Map<String, Object>>  selectQiaoRongCount();
 
 }
