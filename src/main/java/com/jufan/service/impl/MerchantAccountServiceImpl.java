@@ -5,6 +5,7 @@ import com.jufan.dao.MerchantAccountDao;
 import com.jufan.service.MerchantAccountService;
 import com.jufan.service.TableManagerService;
 import com.jufan.util.DoExcelUtil;
+import com.jufan.util.GenerateExcleUtil;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -108,61 +109,8 @@ public class MerchantAccountServiceImpl implements MerchantAccountService {
         //获取商户名称
         String merchantName = merchantAccountDao.getMerchantNameById(id);
         //生成Excle
-        HSSFWorkbook workbook = new HSSFWorkbook();
-        HSSFSheet sheet = workbook.createSheet(merchantName+"的账单");
-        //创建第一栏
-        HSSFRow headRow = sheet.createRow(0);
-        String[] titleArray = new String[20];
-        titleArray[0] = "产品名称";
-        titleArray[1] = "产品调用量";
-        titleArray[2] = "产品价格";
-        titleArray[3] = "产品调用费用总和";
-        DoExcelUtil.doExcel(titleArray, headRow, workbook, sheet);
+        GenerateExcleUtil.creatExcle(allProductDetails,merchantName,mon);
 
-        //写入第一表格数据  判断该商户本月是否有调用
-        int num = 0;
-        if(allProductDetails == null){
-            HSSFRow row = sheet.createRow(num + 1);
-            row.createCell(1);
-            row.getCell(1).setCellValue("暂无数据");
-        }else {
-            int index = 0;
-            //写入产品调用详情
-            Double accountPrice = 0D;
-            for (Map map : allProductDetails) {
-                HSSFRow row = sheet.createRow(index + 1);
-                for (int n = 0; n <= 3; n++) {
-                    row.createCell(n);
-                }
-                //写入一行
-                row.getCell(0).setCellValue(map.get("productName").toString());
-                row.getCell(1).setCellValue(map.get("num").toString());
-                row.getCell(2).setCellValue(map.get("productPrice").toString());
-                row.getCell(3).setCellValue(map.get("totalMonthPrice").toString());
-                accountPrice+=(Double) map.get("totalMonthPrice");
-                index++;
-            }
-            //最后一行写入 总计
-            HSSFRow row = sheet.createRow(index + 1);
-            for (int n = 0; n <= 1; n++) {
-                row.createCell(n);
-            }
-            row.getCell(0).setCellValue("费用总和");
-            row.getCell(1).setCellValue(accountPrice);
-
-        }
-
-        String path = "";
-        try {
-            path = "H:\\"+mon+merchantName+"账单.xls";
-            File file = new File(path);
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            workbook.write(fileOutputStream);
-            fileOutputStream.close();
-            JOptionPane.showMessageDialog(null, "下载完成！", "提示", JOptionPane.WARNING_MESSAGE);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 }
