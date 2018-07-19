@@ -37,8 +37,6 @@ public class HelloController {
     @Autowired
     private MerchantAccountDao merchantAccountDao;
 
-
-
     @RequestMapping("test")
     public String test(){
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!");
@@ -81,15 +79,19 @@ public class HelloController {
         return "merchant/merchant";
     }
 
-
     /**
      *   下载对应商户的Excle
      */
     @RequestMapping("downloadExcle")
     public String downloadExcle(String merchantList){
         System.out.println(merchantList);
-
-
+        //乔融和其他商户账单需要 分开生成
+        //乔融
+        if(merchantList.equals("6e2e452c4a0a4ccf9b08bcf59432c937")){
+            qiaoRongService.selectQiaoRongCount();
+        }else {
+            merchantAccountService.buildAccountExcelByOrgId(merchantList);
+        }
         return "test";
     }
 
