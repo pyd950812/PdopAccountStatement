@@ -14,4 +14,8 @@
         WHERE  DATE_FORMAT(REQUEST_TIME,'%Y-%m') = #{date}
     </select>
 
+    <select id="findQiaoRongIdByName" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT id from pdop_merchant where NAME = #{name}
+    </select>
+
 </mapper>

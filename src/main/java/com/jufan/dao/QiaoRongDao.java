@@ -16,6 +16,9 @@ public interface QiaoRongDao {
     //计算乔融每个月产品的调用量
     List<Map> selectQiaoRongCount(String date);
 
+    //查询乔融（聚泛信审系统）ID
+    String findQiaoRongIdByName(String name);
+
     //计算risk库中的调用量
     String selectRiskCount(String date);
 }

@@ -37,8 +37,9 @@ public class QiaoRongServiceImpl implements QiaoRongService {
 
 
     public List<Map<String, Object>> selectQiaoRongCount() {
-        //这里需要传入乔融的orgId
-        List<Map<String, Object>> merchantCount = merchantAccountService.getMerchantCountByOrgId("05a2dbcba9c94fcba144e5caa464e41a");
+        //这里需要传入乔融的orgId    聚泛信审系统
+        String id = qiaoRongDao.findQiaoRongIdByName("聚泛信审系统");
+        List<Map<String, Object>> merchantCount = merchantAccountService.getMerchantCountByOrgId(id);
 
         //切换到risk库中
         MultipleDataSource.setDataSourceKey("dataSource_risk");

@@ -24,4 +24,8 @@
         SELECT NAME FROM pdop_merchant WHERE id = #{id}
     </select>
 
+    <select id="selectAllMerchant" resultType="java.util.Map">
+        SELECT * from pdop_merchant
+    </select>
+
 </mapper>

@@ -1,16 +1,20 @@
 package com.jufan.controller;
 
+import com.jufan.dao.MerchantAccountDao;
 import com.jufan.service.MerchantAccountService;
 import com.jufan.service.PdopJfReqlogService;
 import com.jufan.service.PdopQueryLogService;
 import com.jufan.service.QiaoRongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,6 +34,8 @@ public class HelloController {
     private PdopQueryLogService pdopQueryLogService;
     @Autowired
     private MerchantAccountService merchantAccountService;
+    @Autowired
+    private MerchantAccountDao merchantAccountDao;
 
 
 
@@ -52,12 +58,40 @@ public class HelloController {
     }
 
 
+    /**
+     * 首页
+     * @return
+     */
+    @RequestMapping("login")
+    public String login(){
 
-    @RequestMapping("ff")
-    public String ff(){
-        merchantAccountService.buildAccountExcelByOrgId("c738ba0527f940c29847b893f3e33681");
-        qiaoRongService.selectQiaoRongCount();
+        return "login/login";
+    }
+
+    /**
+     * 进入商户操作界面
+     * @return
+     */
+    @RequestMapping("toMerchant")
+    public String toMerchant(HttpServletRequest request){
+        //查询所有商户
+        List<Map<String, Object>> list = merchantAccountDao.selectAllMerchant();
+
+        request.setAttribute("merchantList",list);
+        return "merchant/merchant";
+    }
+
+
+    /**
+     *   下载对应商户的Excle
+     */
+    @RequestMapping("downloadExcle")
+    public String downloadExcle(String merchantList){
+        System.out.println(merchantList);
+
+
         return "test";
     }
+
 
 }

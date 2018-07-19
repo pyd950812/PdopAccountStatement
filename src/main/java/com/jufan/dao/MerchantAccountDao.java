@@ -22,5 +22,10 @@ public interface MerchantAccountDao {
       */
      String getMerchantNameById(@Param("id")String id);
 
+     /**
+      *  查询所有商户
+      */
+     List<Map<String,Object >> selectAllMerchant();
+
 
 }
