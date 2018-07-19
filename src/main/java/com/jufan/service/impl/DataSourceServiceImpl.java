@@ -37,7 +37,6 @@ public class DataSourceServiceImpl implements DataSourceAccountService {
                         String productId = dataSourceDao.getProductById(interfaceIdList.get(i));
                         productList.add(productId);
                     }
-
                     //获取前一个月的表名
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
                     Date date = new Date();
@@ -45,6 +44,8 @@ public class DataSourceServiceImpl implements DataSourceAccountService {
                     String startDate = sdf.format(date);
                     String jfTableName = "pdop_data_jfext_" + startDate;
                     String queryTableName = "pdop_data_queryext_" + startDate;
+                    System.out.println("jf拓展表名"+jfTableName);
+                    System.out.println("query拓展表名"+queryTableName);
                     Map map = new HashMap();
                     map.put("jfTableName", jfTableName);
                     map.put("queryTableName", queryTableName);
@@ -53,6 +54,7 @@ public class DataSourceServiceImpl implements DataSourceAccountService {
                     if (accountList.size() > 0) {
                         //由于生成账单需要接口名和价格
                         for (Map<String, Object> mapDetail : accountList) {
+                            //此处备注：由于数据库返回的是map对象，我们这边没有用bean封装所以取值的key为数据库返回字段的key值
                             if (mapDetail.containsKey("product_id") && mapDetail.containsKey("num")) {
                                 String count = mapDetail.get("num").toString();
                                 Integer num = Integer.parseInt(count);
@@ -77,9 +79,7 @@ public class DataSourceServiceImpl implements DataSourceAccountService {
                         }
                         //生成excel报表
                         GenerateExcleUtil.creatExcle(accountList, dataSourceName,startDate);
-
                     }
-
 
                 }
 

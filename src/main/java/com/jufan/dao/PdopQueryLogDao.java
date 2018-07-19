@@ -21,9 +21,19 @@ public interface PdopQueryLogDao {
 
     int update(@Param("pojo") PdopQueryLog pojo);
 
-    //用于查询时间区间一个小时的
+    /**
+     * 该方法查询的是每个小时插入query表的数据
+     * @param map
+     * @return
+     */
     List<PdopQueryLog> selectByHour(Map<String,Object> map );
 
+    /**
+     * 该方式是将查询得到的一个小时中新增的数据保存到query拓展表里面
+     * @param tableName
+     * @param pojos
+     * @return
+     */
     int insertQueryExtList(@Param("tableName")String tableName ,@Param("pojos")List< PdopQueryLog> pojos);
 
 }

@@ -33,22 +33,21 @@
     </bean>
 
     <!--每月月初执行-->
-    <bean id="timedTaskJob2" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+<!--    <bean id="timedTaskJob2" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="timedTask"></property>
         <property name="targetMethod" value="dropTableByMonth"></property>
         <property name="concurrent" value="false"></property>
     </bean>
-    <!-- quartz-2.x的配置 -->
+    &lt;!&ndash; quartz-2.x的配置 &ndash;&gt;
     <bean id="timedTaskTrigger2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="timedTaskJob2" />
         <property name="cronExpression" value="0 0 1 1 * ?" />
-    </bean>
+    </bean>-->
 
     <bean id="startQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
                 <ref bean="timedTaskTrigger" />
-                <ref bean="timedTaskTrigger2" />
             </list>
         </property>
         <property name="waitForJobsToCompleteOnShutdown" value="true"/>

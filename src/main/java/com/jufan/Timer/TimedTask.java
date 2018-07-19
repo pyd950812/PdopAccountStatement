@@ -15,7 +15,7 @@ import java.util.*;
 /**
  * @Author gaokun
  * @Date 2018/7/17 17:47
- * @function:  该类用于定时任务获取数据
+ * @function: 该类用于定时任务获取数据
  */
 public class TimedTask {
 
@@ -36,7 +36,9 @@ public class TimedTask {
         Calendar ca = Calendar.getInstance();
         ca.set(Calendar.MINUTE, 0);
         ca.set(Calendar.SECOND, 0);
+        //该simple用于格式化当前时间到秒这样可以取出整点
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //该simple用于取时间的年月  用于获取表名
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM");
         String suffix = sdf1.format(new Date());
         //当前时间小时整点
