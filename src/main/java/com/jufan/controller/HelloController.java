@@ -85,11 +85,7 @@ public class HelloController {
     @RequestMapping("toDatasource")
     public String toDatasource(HttpServletRequest request){
         //查询所有商户
-        List<String> list =new ArrayList<String>();
-        list.add(DatasourceConfig.moxieTestId);
-        list.add(DatasourceConfig.tongdunTestId);
-        list.add(DatasourceConfig.xhtdTestId);
-        List<Map<String,Object>> mapList= dataSourceAccountService.getCommonDataSource(list);
+        List<Map<String,Object>> mapList= dataSourceAccountService.getCommonDataSource(DatasourceConfig.listTest);
         request.setAttribute("datasourceList",mapList);
         return "datasource/datasource";
     }
@@ -101,6 +97,17 @@ public class HelloController {
     @RequestMapping("downloadExcle")
     public String downloadExcle(String merchantList){
         System.out.println(merchantList);
+        return "test";
+    }
+
+
+
+    /**
+     *   下载对应商户的Excle
+     */
+    @RequestMapping("downloadDatasourceExcle")
+    public String downloadDatasourceExcle(String datasourceId){
+        dataSourceAccountService.getDataSourceAccountById(datasourceId);
         return "test";
     }
 
