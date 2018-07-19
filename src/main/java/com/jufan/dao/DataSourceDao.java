@@ -48,4 +48,10 @@ public interface DataSourceDao {
      * @return
      */
     String getDataSourceNameByDid(@Param("dataSourceId")String dataSourceId);
+
+    /**
+     * 查询几个常用的的数据源的名称和id
+     * @return
+     */
+    List<Map<String,Object>> getCommonDataSource(@Param("datasourceList") List<String> datasourceList);
 }

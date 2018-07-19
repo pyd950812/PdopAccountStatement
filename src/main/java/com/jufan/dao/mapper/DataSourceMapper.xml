@@ -3,7 +3,6 @@
 <mapper namespace="com.jufan.dao.DataSourceDao">
 
     <select id="getDataSourceAccountByPid" parameterType="java.lang.String" resultType="java.util.Map">
-
         SELECT  count(j.product_id) as num, j.product_id  FROM `${jfTableName}` j , `${queryTableName}` q where q.jf_reqlog_id =j.id
         AND j.ORIGINAL_RESPONSE_RAW is NOT NULL
         AND q.is_charge ='1'
@@ -13,14 +12,11 @@
         </foreach>
         GROUP BY
         j.product_id
-
     </select>
 
 
     <select id="getInterfaceListByDid" parameterType="java.lang.String" resultType="java.lang.String">
-
         SELECT id from pdop_interface where datasource_id = #{dataSourceId}
-
     </select>
 
     <select id="getProductById" parameterType="java.lang.String" resultType="java.lang.String">
@@ -31,13 +27,20 @@
         SELECT interface_id  from pdop_interface_product where  product_id = #{productId}
     </select>
 
-
     <select id="getInterfaceDetailById" parameterType="java.lang.String" resultType="java.util.Map">
         SELECT name , price  from pdop_interface  where  id = #{interfaceId}
     </select>
 
-
     <select id="getDataSourceNameByDid" parameterType="java.lang.String" resultType="java.lang.String">
         SELECT d.name  from pdop_datasource d where  d.id = #{dataSourceId}
     </select>
+
+    <select id="getCommonDataSource" parameterType="java.lang.String" resultType="java.util.Map">
+        SELECT d.NAME as name, d.ID as id from pdop_datasource d where  d.ID in
+        <foreach item="item" collection="datasourceList" separator="," open="(" close=")" index="">
+            #{item}
+        </foreach>
+
+    </select>
+
 </mapper>
