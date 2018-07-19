@@ -69,7 +69,7 @@ public class GenerateExcleUtil {
 
         String path = "";
         try {
-            path = "C:\\Users\\kunku\\Desktop\\"+date+merchantName+"账单.xls";
+            path = "H:\\"+date+merchantName+"账单.xls";
             File file = new File(path);
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             workbook.write(fileOutputStream);

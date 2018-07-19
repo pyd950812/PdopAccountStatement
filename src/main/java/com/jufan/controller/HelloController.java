@@ -97,13 +97,20 @@ public class HelloController {
     @RequestMapping("downloadExcle")
     public String downloadExcle(String merchantList){
         System.out.println(merchantList);
+        //乔融和其他商户账单需要 分开生成
+        //乔融
+        if(merchantList.equals("6e2e452c4a0a4ccf9b08bcf59432c937")){
+            qiaoRongService.selectQiaoRongCount();
+        }else {
+            merchantAccountService.buildAccountExcelByOrgId(merchantList);
+        }
         return "test";
     }
 
 
 
     /**
-     *   下载对应商户的Excle
+     *   下载对应数据源的Excle
      */
     @RequestMapping("downloadDatasourceExcle")
     public String downloadDatasourceExcle(String datasourceId){

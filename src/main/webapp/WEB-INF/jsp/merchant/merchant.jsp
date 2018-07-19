@@ -35,7 +35,7 @@
             <tr>
                 <td>商户名称(单选):<div name="merchantName">
                     <c:forEach var="m" items="${merchantList}" varStatus="index">
-                        <input type="checkbox" name="merchantList" id="${m.ID}" value="${m.ID}"/>${m.NAME}
+                        <input type="radio" name="merchantList" id="${m.ID}" value="${m.ID}"/>${m.NAME}
                     </c:forEach>
                 </div></td>
 
