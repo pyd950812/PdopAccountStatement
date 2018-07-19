@@ -1,10 +1,7 @@
 import com.jufan.dao.QiaoRongDao;
 import com.jufan.model.PdopJfReqlog;
 import com.jufan.model.PdopQueryLog;
-import com.jufan.service.MerchantAccountService;
-import com.jufan.service.PdopJfReqlogService;
-import com.jufan.service.PdopQueryLogService;
-import com.jufan.service.TableManagerService;
+import com.jufan.service.*;
 import com.jufan.util.ReturnData;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,6 +31,8 @@ public class JustForTest {
     private TableManagerService tableManagerService;
     @Autowired
     private QiaoRongDao qiaoRongDao;
+    @Autowired
+    private DataSourceAccountService dataSourceAccountService;
 
     public static void main(String[] args) {
 /*        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -105,7 +104,7 @@ public class JustForTest {
             }
 
 */
-
+/*
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
         Date date = new Date();
         date.setMonth(date.getMonth() - 1);
@@ -114,16 +113,12 @@ public class JustForTest {
         String queryTableName = "pdop_data_queryext_" + startDate;
         System.out.println(jfTableName + "" + queryTableName);
 
-        merchantAccountService.getMerchantCountByOrgId("10001");
+        merchantAccountService.getMerchantCountByOrgId("10001");*/
+
+        dataSourceAccountService.getDataSourceAccountById("e1087d464682403b9b84d1e8a885b6e7");
     }
 
 
-    @Test
-    public void tttt(){
-
-
-
-    }
 
 
 }

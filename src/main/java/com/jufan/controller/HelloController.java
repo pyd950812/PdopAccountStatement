@@ -1,10 +1,8 @@
 package com.jufan.controller;
 
 import com.jufan.dao.MerchantAccountDao;
-import com.jufan.service.MerchantAccountService;
-import com.jufan.service.PdopJfReqlogService;
-import com.jufan.service.PdopQueryLogService;
-import com.jufan.service.QiaoRongService;
+import com.jufan.service.*;
+import com.jufan.util.DatasourceConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Author pengyd
@@ -36,6 +31,10 @@ public class HelloController {
     private MerchantAccountService merchantAccountService;
     @Autowired
     private MerchantAccountDao merchantAccountDao;
+    @Autowired
+    private DataSourceAccountService dataSourceAccountService;
+
+
 
     @RequestMapping("test")
     public String test(){
@@ -80,18 +79,28 @@ public class HelloController {
     }
 
     /**
+     * 进入数据源操作界面
+     * @return
+     */
+    @RequestMapping("toDatasource")
+    public String toDatasource(HttpServletRequest request){
+        //查询所有商户
+        List<String> list =new ArrayList<String>();
+        list.add(DatasourceConfig.moxieTestId);
+        list.add(DatasourceConfig.tongdunTestId);
+        list.add(DatasourceConfig.xhtdTestId);
+        List<Map<String,Object>> mapList= dataSourceAccountService.getCommonDataSource(list);
+        request.setAttribute("datasourceList",mapList);
+        return "datasource/datasource";
+    }
+
+
+    /**
      *   下载对应商户的Excle
      */
     @RequestMapping("downloadExcle")
     public String downloadExcle(String merchantList){
         System.out.println(merchantList);
-        //乔融和其他商户账单需要 分开生成
-        //乔融
-        if(merchantList.equals("6e2e452c4a0a4ccf9b08bcf59432c937")){
-            qiaoRongService.selectQiaoRongCount();
-        }else {
-            merchantAccountService.buildAccountExcelByOrgId(merchantList);
-        }
         return "test";
     }
 

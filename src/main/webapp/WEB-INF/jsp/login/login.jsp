@@ -37,7 +37,7 @@
     }
 
     function toVintage() {
-        window.location.href="hello/vintage";
+        window.location.href="hello/toDatasource";
     }
 
 

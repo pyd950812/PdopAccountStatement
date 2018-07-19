@@ -16,7 +16,7 @@ import java.util.*;
  * @function:  数据源账单的具体实现类
  */
 @Service
-public class DataSourceServiceImpl implements DataSourceAccountService {
+public class DataSourceAccountServiceImpl implements DataSourceAccountService {
 
     @Autowired
     private DataSourceDao dataSourceDao;
@@ -88,5 +88,9 @@ public class DataSourceServiceImpl implements DataSourceAccountService {
             }
 
         }
+    }
+
+    public List<Map<String, Object>> getCommonDataSource(List<String> datasourceList) {
+        return dataSourceDao.getCommonDataSource(datasourceList);
     }
 }
