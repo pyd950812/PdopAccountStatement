@@ -13,6 +13,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.swing.*;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -36,7 +37,7 @@ public class QiaoRongServiceImpl implements QiaoRongService {
     private MerchantAccountService merchantAccountService;
 
 
-    public List<Map<String, Object>> selectQiaoRongCount() {
+    public List<Map<String, Object>> selectQiaoRongCount(HttpServletResponse response) {
         //这里需要传入乔融的orgId    聚泛信审系统
         String id = qiaoRongDao.findQiaoRongIdByName("聚泛信审系统");
         List<Map<String, Object>> merchantCount = merchantAccountService.getMerchantCountByOrgId(id);
@@ -64,7 +65,7 @@ public class QiaoRongServiceImpl implements QiaoRongService {
         merchantCount.add(map);
 
         //生成Excle
-        GenerateExcleUtil.creatExcle(merchantCount,"乔融",mon);
+        GenerateExcleUtil.creatExcle(merchantCount,"乔融",mon,response);
         return merchantCount;
     }
 

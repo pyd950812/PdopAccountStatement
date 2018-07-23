@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -96,7 +97,7 @@ public class MerchantAccountServiceImpl implements MerchantAccountService {
     /**
      * 将商户的信息生成Excle  入参商户Id
      */
-    public void buildAccountExcelByOrgId(String id) {
+    public void buildAccountExcelByOrgId(String id, HttpServletResponse response) {
         //获取本月上一个月的账单数据
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
         Calendar c = Calendar.getInstance();
@@ -110,7 +111,7 @@ public class MerchantAccountServiceImpl implements MerchantAccountService {
         //获取商户名称
         String merchantName = merchantAccountDao.getMerchantNameById(id);
         //生成Excle
-        GenerateExcleUtil.creatExcle(allProductDetails,merchantName,mon);
+        GenerateExcleUtil.creatExcle(allProductDetails,merchantName,mon,response);
 
     }
 

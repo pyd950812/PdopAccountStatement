@@ -132,7 +132,7 @@
     
     
     <select id="selectByHour" parameterType="java.util.Map" resultMap="AllColumnMap">
-        SELECT * FROM pdop_query_log where CREATE_DATETIME BETWEEN '2018-06-01 00:00:00' AND '2018-07-01 00:00:00';
+        SELECT * FROM pdop_query_log where CREATE_DATETIME BETWEEN #{startTime} AND #{endTime};
     </select>
 
 

@@ -12,8 +12,6 @@
             href="${pageContext.request.contextPath}/static/css/application.css"
             rel="stylesheet">
     <script
-            src="${pageContext.request.contextPath}/static/js/select.js"></script>
-    <script
             src="${pageContext.request.contextPath}/static/js/login.js"></script>
     <script
             src="${pageContext.request.contextPath}/static/js/jquery-1.11.0.js"></script>

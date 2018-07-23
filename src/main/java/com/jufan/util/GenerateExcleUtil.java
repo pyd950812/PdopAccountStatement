@@ -4,9 +4,12 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.swing.*;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +24,7 @@ public class GenerateExcleUtil {
      *  传入产品调用的List 商户名称 查询的年月  生成Excle
      * @param merchantCount
      */
-    public static void creatExcle(List<Map<String,Object>> merchantCount , String merchantName ,String date){
+    public static void creatExcle(List<Map<String,Object>> merchantCount , String merchantName , String date, HttpServletResponse response){
         //生成Excle
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet(merchantName+"账单");
@@ -67,14 +70,21 @@ public class GenerateExcleUtil {
         }
 
 
-        String path = "";
+//        String path = "";
         try {
-            path = "H:\\"+date+merchantName+"账单.xls";
-            File file = new File(path);
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            workbook.write(fileOutputStream);
-            fileOutputStream.close();
-            JOptionPane.showMessageDialog(null, "下载完成！", "提示", JOptionPane.WARNING_MESSAGE);
+//            path = "home\\prod\\apache-tomcat-8.0.44\\file\\"+date+merchantName+"账单.xls";
+//            File file = new File(path);
+//            FileOutputStream fileOutputStream = new FileOutputStream(file);
+//            workbook.write(fileOutputStream);
+//            fileOutputStream.close();
+//            JOptionPane.showMessageDialog(null, "下载完成！", "提示", JOptionPane.WARNING_MESSAGE);
+
+            response.setContentType("application/x-download");
+            String fileName = URLEncoder.encode(date+merchantName+"账单.xls", "UTF-8");
+            response.setCharacterEncoding("UTF-8");
+            response.addHeader("Content-Disposition", "attachment;filename=" + fileName);
+            ServletOutputStream outputStream = response.getOutputStream();
+            workbook.write(outputStream);
         } catch (Exception e) {
             e.printStackTrace();
         }

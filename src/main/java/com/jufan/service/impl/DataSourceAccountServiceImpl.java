@@ -6,6 +6,7 @@ import com.jufan.util.GenerateExcleUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -18,6 +19,7 @@ import java.util.*;
 @Service
 public class DataSourceAccountServiceImpl implements DataSourceAccountService {
 
+
     @Autowired
     private DataSourceDao dataSourceDao;
 
@@ -25,7 +27,7 @@ public class DataSourceAccountServiceImpl implements DataSourceAccountService {
      * 该方法用于封装数据源一个月的调用情况
      * @param dataSourceId
      */
-    public void getDataSourceAccountById(String dataSourceId) {
+    public void getDataSourceAccountById(String dataSourceId, HttpServletResponse response) {
 
         String dataSourceName=dataSourceDao.getDataSourceNameByDid(dataSourceId);
         if(!dataSourceName.equals("")&&dataSourceName!=null) {
@@ -73,20 +75,15 @@ public class DataSourceAccountServiceImpl implements DataSourceAccountService {
                                         mapDetail.put("totalMonthPrice", totalMonthPrice);
                                     }
                                 }
-
                             }
-
                         }
                         //生成excel报表
-                        GenerateExcleUtil.creatExcle(accountList, dataSourceName,startDate);
+                        GenerateExcleUtil.creatExcle(accountList, dataSourceName,startDate,response);
                     }
-
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
     }
 

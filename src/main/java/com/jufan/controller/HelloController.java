@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -95,16 +96,16 @@ public class HelloController {
      *   下载对应商户的Excle
      */
     @RequestMapping("downloadExcle")
-    public String downloadExcle(String merchantList){
+    public void downloadExcle(String merchantList,HttpServletResponse response){
         System.out.println(merchantList);
         //乔融和其他商户账单需要 分开生成
         //乔融
         if(merchantList.equals("6e2e452c4a0a4ccf9b08bcf59432c937")){
-            qiaoRongService.selectQiaoRongCount();
+            qiaoRongService.selectQiaoRongCount(response);
         }else {
-            merchantAccountService.buildAccountExcelByOrgId(merchantList);
+            merchantAccountService.buildAccountExcelByOrgId(merchantList,response);
         }
-        return "test";
+//        return "test";
     }
 
 
@@ -113,9 +114,9 @@ public class HelloController {
      *   下载对应数据源的Excle
      */
     @RequestMapping("downloadDatasourceExcle")
-    public String downloadDatasourceExcle(String datasourceId){
-        dataSourceAccountService.getDataSourceAccountById(datasourceId);
-        return "test";
+    public void downloadDatasourceExcle(String datasourceId, HttpServletResponse response){
+        dataSourceAccountService.getDataSourceAccountById(datasourceId,response);
+//        return "test";
     }
 
 
