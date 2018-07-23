@@ -40,9 +40,10 @@ public class TimedTask {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //该simple用于取时间的年月  用于获取表名
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM");
-        String suffix = sdf1.format(new Date());
         //当前前一天时间小时整点
         ca.set(Calendar.DAY_OF_MONTH,ca.get(Calendar.DAY_OF_MONTH) - 1);
+        Date day=ca.getTime();
+        String suffix = sdf1.format(day);
         Date endDate = ca.getTime();
         String endTime = sdf.format(endDate);
         System.out.println("当前时间整点小时" + endTime);
