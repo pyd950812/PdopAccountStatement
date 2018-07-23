@@ -41,16 +41,15 @@ public class TimedTask {
         //该simple用于取时间的年月  用于获取表名
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM");
         String suffix = sdf1.format(new Date());
-        //当前时间小时整点
+        //当前前一天时间小时整点
+        ca.set(Calendar.DAY_OF_MONTH,ca.get(Calendar.DAY_OF_MONTH) - 1);
         Date endDate = ca.getTime();
         String endTime = sdf.format(endDate);
         System.out.println("当前时间整点小时" + endTime);
-
         ca.set(Calendar.HOUR_OF_DAY, ca.get(Calendar.HOUR_OF_DAY) - 1);
         Date startDate = ca.getTime();
         String startTime = sdf.format(startDate);
-        System.out.println("当前时间前一小时整点" + startTime);
-
+        System.out.println("当前时间前一天前一小时整点" + startTime);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("startTime", startTime);
         map.put("endTime", endTime);
