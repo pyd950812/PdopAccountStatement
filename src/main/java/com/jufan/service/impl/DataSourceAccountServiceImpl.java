@@ -14,7 +14,7 @@ import java.util.*;
 /**
  * @Author gaokun
  * @Date 2018/7/17 17:47
- * @function:  数据源账单的具体实现类
+ * @function: 数据源账单的具体实现类
  */
 @Service
 public class DataSourceAccountServiceImpl implements DataSourceAccountService {
@@ -25,12 +25,13 @@ public class DataSourceAccountServiceImpl implements DataSourceAccountService {
 
     /**
      * 该方法用于封装数据源一个月的调用情况
+     *
      * @param dataSourceId
      */
     public void getDataSourceAccountById(String dataSourceId, HttpServletResponse response) {
 
-        String dataSourceName=dataSourceDao.getDataSourceNameByDid(dataSourceId);
-        if(!dataSourceName.equals("")&&dataSourceName!=null) {
+        String dataSourceName = dataSourceDao.getDataSourceNameByDid(dataSourceId);
+        if (!dataSourceName.equals("") && dataSourceName != null) {
             List<String> productList = new ArrayList<String>();
             try {
                 List<String> interfaceIdList = dataSourceDao.getInterfaceListByDid(dataSourceId);
@@ -46,40 +47,42 @@ public class DataSourceAccountServiceImpl implements DataSourceAccountService {
                     String startDate = sdf.format(date);
                     String jfTableName = "pdop_data_jfext_" + startDate;
                     String queryTableName = "pdop_data_queryext_" + startDate;
-                    System.out.println("jf拓展表名"+jfTableName);
-                    System.out.println("query拓展表名"+queryTableName);
+                    System.out.println("jf拓展表名" + jfTableName);
+                    System.out.println("query拓展表名" + queryTableName);
                     Map map = new HashMap();
                     map.put("jfTableName", jfTableName);
                     map.put("queryTableName", queryTableName);
                     map.put("productList", productList);
                     List<Map<String, Object>> accountList = dataSourceDao.getDataSourceAccountByPid(map);
-                    if (accountList.size() > 0) {
-                        //由于生成账单需要接口名和价格
-                        for (Map<String, Object> mapDetail : accountList) {
-                            //此处备注：由于数据库返回的是map对象，我们这边没有用bean封装所以取值的key为数据库返回字段的key值
-                            if (mapDetail.containsKey("product_id") && mapDetail.containsKey("num")) {
-                                String count = mapDetail.get("num").toString();
-                                Integer num = Integer.parseInt(count);
-                                String pid = mapDetail.get("product_id").toString();
-                                System.out.println("产品id ：" + pid);
-                                String id = dataSourceDao.getInterfaceIdByPid(pid);
-                                if (id != null && id != "") {
-                                    Map<String,Object> map1 = dataSourceDao.getInterfaceDetailById(id);
-                                    if (map1.containsKey("price") && map1.containsKey("name")) {
-                                        String interfaceName = map1.get("name").toString();
-                                        String price = map1.get("price").toString();
-                                        Double interfacePrice = Double.parseDouble(price);
-                                        mapDetail.put("productName", interfaceName);
-                                        mapDetail.put("productPrice", interfacePrice);
-                                        Double totalMonthPrice = num * interfacePrice;
-                                        mapDetail.put("totalMonthPrice", totalMonthPrice);
+                    if (accountList != null) {
+                        if (accountList.size() > 0) {
+                            //由于生成账单需要接口名和价格
+                            for (Map<String, Object> mapDetail : accountList) {
+                                //此处备注：由于数据库返回的是map对象，我们这边没有用bean封装所以取值的key为数据库返回字段的key值
+                                if (mapDetail.containsKey("product_id") && mapDetail.containsKey("num")) {
+                                    String count = mapDetail.get("num").toString();
+                                    Integer num = Integer.parseInt(count);
+                                    String pid = mapDetail.get("product_id").toString();
+                                    System.out.println("产品id ：" + pid);
+                                    String id = dataSourceDao.getInterfaceIdByPid(pid);
+                                    if (id != null && !id.equals("")) {
+                                        Map<String, Object> map1 = dataSourceDao.getInterfaceDetailById(id);
+                                        if (map1.containsKey("price") && map1.containsKey("name")) {
+                                            String interfaceName = map1.get("name").toString();
+                                            String price = map1.get("price").toString();
+                                            Double interfacePrice = Double.parseDouble(price);
+                                            mapDetail.put("productName", interfaceName);
+                                            mapDetail.put("productPrice", interfacePrice);
+                                            Double totalMonthPrice = num * interfacePrice;
+                                            mapDetail.put("totalMonthPrice", totalMonthPrice);
+                                        }
                                     }
                                 }
                             }
                         }
-                        //生成excel报表
-                        GenerateExcleUtil.creatExcle(accountList, dataSourceName,startDate,response);
                     }
+                    //生成excel报表
+                    GenerateExcleUtil.creatExcle(accountList, dataSourceName, startDate, response);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
