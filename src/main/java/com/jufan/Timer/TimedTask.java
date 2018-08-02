@@ -7,6 +7,7 @@ import com.jufan.service.PdopJfReqlogService;
 import com.jufan.service.PdopQueryLogService;
 import com.jufan.service.TableManagerService;
 import com.jufan.util.ReturnData;
+import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.SimpleDateFormat;
@@ -33,7 +34,10 @@ public class TimedTask {
      */
     public void queryDataByAnHour() {
         System.out.println("进入定时任务，每隔一个小时拉取数据");
+        Date d=new Date();
         Calendar ca = Calendar.getInstance();
+        ca.setTime(d);
+        ca.set(Calendar.DATE, ca.get(Calendar.DATE) - 1);
         ca.set(Calendar.MINUTE, 0);
         ca.set(Calendar.SECOND, 0);
         //该simple用于格式化当前时间到秒这样可以取出整点
@@ -41,15 +45,14 @@ public class TimedTask {
         //该simple用于取时间的年月  用于获取表名
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM");
         //当前前一天时间小时整点
-        ca.set(Calendar.DAY_OF_MONTH,ca.get(Calendar.DAY_OF_MONTH) - 1);
-        Date day=ca.getTime();
+        //ca.set(Calendar.Day, ca.get(Calendar.DAY_OF_MONTH) - 1);
+        Date day = ca.getTime();
         String suffix = sdf1.format(day);
-        Date endDate = ca.getTime();
-        String endTime = sdf.format(endDate);
-        System.out.println("当前时间整点小时" + endTime);
-        ca.set(Calendar.HOUR_OF_DAY, ca.get(Calendar.HOUR_OF_DAY) - 1);
         Date startDate = ca.getTime();
-        String startTime = sdf.format(startDate);
+        String endTime = sdf.format(startDate);
+        System.out.println("当前时间前一天整点小时" + endTime);
+        Date endDate = DateUtils.addHours(startDate,1);
+        String startTime = sdf.format(endDate);
         System.out.println("当前时间前一天前一小时整点" + startTime);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("startTime", startTime);
@@ -77,7 +80,6 @@ public class TimedTask {
                 if (jf == true) {
                     pdopJfReqlogService.insertJfExtList(jfTableName, pdopJfReqlogList);
                 } else {
-
                     ReturnData returnData1 = tableManagerService.createJfTable(jfTableName);
                     if (returnData1.getCode().equals("OK")) {
                         pdopJfReqlogService.insertJfExtList(jfTableName, pdopJfReqlogList);
@@ -128,28 +130,27 @@ public class TimedTask {
 
 
     public static void main(String[] args) {
-      /*  Calendar ca = Calendar.getInstance();
+        System.out.println("进入定时任务，每隔一个小时拉取数据");
+        Date d=new Date();
+        Calendar ca = Calendar.getInstance();
+        ca.setTime(d);
+        ca.set(Calendar.DATE, ca.get(Calendar.DATE) - 1);
         ca.set(Calendar.MINUTE, 0);
         ca.set(Calendar.SECOND, 0);
+        //该simple用于格式化当前时间到秒这样可以取出整点
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-        //当前时间小时整点
-        Date endDate = ca.getTime();
-        String endTime=sdf.format(endDate);
-        System.out.println("当前时间整点小时"+endTime);
-
-        ca.set(Calendar.HOUR_OF_DAY, ca.get(Calendar.HOUR_OF_DAY)-1);
-        Date startDate = ca.getTime();
-        String startTime=sdf.format(startDate);
-        System.out.println("当前时间前一小时整点"+startTime);
-
-        Map<String,Object> map = new HashMap<String,Object>();
-        map.put("startTime",startTime);
-        map.put("endTime",endTime);
-
+        //该simple用于取时间的年月  用于获取表名
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM");
-        Date d =new Date();
-        System.out.println(sdf1.format(d));*/
-
+        //当前前一天时间小时整点
+        //ca.set(Calendar.Day, ca.get(Calendar.DAY_OF_MONTH) - 1);
+        Date day = ca.getTime();
+        String suffix = sdf1.format(day);
+        System.out.println(suffix);
+        Date startDate = ca.getTime();
+        String endTime = sdf.format(startDate);
+        System.out.println("当前时间前一天整点小时" + endTime);
+        Date endDate = DateUtils.addHours(startDate,1);
+        String startTime = sdf.format(endDate);
+        System.out.println("当前时间前一天前一小时整点" + startTime);
     }
 }
