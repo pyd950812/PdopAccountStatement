@@ -62,7 +62,7 @@ public class HelloController {
      */
     @RequestMapping("login")
     public String login(){
-
+        System.out.println("登陆");
         return "login/login";
     }
 
@@ -86,7 +86,7 @@ public class HelloController {
     @RequestMapping("toDatasource")
     public String toDatasource(HttpServletRequest request){
         //查询所有商户
-        List<Map<String,Object>> mapList= dataSourceAccountService.getCommonDataSource(DatasourceConfig.listTest);
+        List<Map<String,Object>> mapList= dataSourceAccountService.getCommonDataSource(DatasourceConfig.listPro);
         request.setAttribute("datasourceList",mapList);
         return "datasource/datasource";
     }

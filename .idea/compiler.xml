@@ -9,8 +9,8 @@
         <module name="PdopAccountStatement" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="PdopAccountStatement" target="1.8" />
+    <bytecodeTargetLevel target="8">
+      <module name="PdopAccountStatement" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

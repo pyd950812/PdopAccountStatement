@@ -3,6 +3,7 @@ package com.jufan.service.impl;
 import com.jufan.dao.DataSourceDao;
 import com.jufan.service.DataSourceAccountService;
 import com.jufan.util.GenerateExcleUtil;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ import java.util.*;
 @Service
 public class DataSourceAccountServiceImpl implements DataSourceAccountService {
 
+    private static final Logger logger = Logger.getLogger(DataSourceAccountServiceImpl.class);
 
     @Autowired
     private DataSourceDao dataSourceDao;
@@ -29,7 +31,7 @@ public class DataSourceAccountServiceImpl implements DataSourceAccountService {
      * @param dataSourceId
      */
     public void getDataSourceAccountById(String dataSourceId, HttpServletResponse response) {
-
+        logger.info("getDataSourceAccountById");
         String dataSourceName = dataSourceDao.getDataSourceNameByDid(dataSourceId);
         if (!dataSourceName.equals("") && dataSourceName != null) {
             List<String> productList = new ArrayList<String>();
