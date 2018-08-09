@@ -49,11 +49,11 @@ public class TimedTask {
         Date day = ca.getTime();
         String suffix = sdf1.format(day);
         Date startDate = ca.getTime();
-        String endTime = sdf.format(startDate);
-        System.out.println("当前时间前一天整点小时" + endTime);
+        String startTime = sdf.format(startDate);
+        System.out.println("当前时间前一天整点小时" + startTime);
         Date endDate = DateUtils.addHours(startDate,1);
-        String startTime = sdf.format(endDate);
-        System.out.println("当前时间前一天前一小时整点" + startTime);
+        String endTime = sdf.format(endDate);
+        System.out.println("当前时间前一天后一小时整点" + endTime);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("startTime", startTime);
         map.put("endTime", endTime);
@@ -147,10 +147,10 @@ public class TimedTask {
         String suffix = sdf1.format(day);
         System.out.println(suffix);
         Date startDate = ca.getTime();
-        String endTime = sdf.format(startDate);
-        System.out.println("当前时间前一天整点小时" + endTime);
+        String startTime = sdf.format(startDate);
+        System.out.println("当前时间前一天整点小时" + startTime);
         Date endDate = DateUtils.addHours(startDate,1);
-        String startTime = sdf.format(endDate);
-        System.out.println("当前时间前一天前一小时整点" + startTime);
+        String endTime = sdf.format(endDate);
+        System.out.println("当前时间前一天前一小时整点" + endTime);
     }
 }

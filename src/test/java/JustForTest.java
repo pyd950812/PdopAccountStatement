@@ -47,75 +47,30 @@ public class JustForTest {
 
     @Test
     public void test() {
-//        tableManagerService.createTable("qqqqq");
-//        tableManagerService.createJfTable("qqqqq");
-       /* System.out.println("进入定时任务，每隔一个小时拉取数据");
+        System.out.println("进入定时任务，每隔一个小时拉取数据");
         Calendar ca = Calendar.getInstance();
+        System.out.println(ca.getTime());
         ca.set(Calendar.MINUTE, 0);
         ca.set(Calendar.SECOND, 0);
+        //该simple用于格式化当前时间到秒这样可以取出整点
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //该simple用于取时间的年月  用于获取表名
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM");
-        String suffix = sdf1.format(new Date());
-        //当前时间小时整点
+        //当前前一天时间小时整点
+        ca.set(Calendar.DAY_OF_MONTH,ca.get(Calendar.DAY_OF_MONTH) -1);
+        Date day=ca.getTime();
+        String suffix = sdf1.format(day);
+        System.out.println(suffix);
         Date endDate = ca.getTime();
         String endTime = sdf.format(endDate);
         System.out.println("当前时间整点小时" + endTime);
-
-        ca.set(Calendar.MONTH, ca.get(Calendar.MONTH) - 1);
+        ca.set(Calendar.HOUR_OF_DAY, ca.get(Calendar.HOUR_OF_DAY) - 1);
         Date startDate = ca.getTime();
         String startTime = sdf.format(startDate);
-        System.out.println("当前时间前一小时整点" + startTime);
-
+        System.out.println("当前时间前一天前一小时整点" + startTime);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("startTime", startTime);
         map.put("endTime", endTime);
-
-        List<PdopJfReqlog> pdopJfReqlogList = pdopJfReqlogService.selectByHour(map);
-        List<PdopQueryLog> pdopQueryLogList = pdopQueryLogService.selectByHour(map);
-        if (pdopJfReqlogList.size() > 0 && pdopQueryLogList.size() > 0) {
-            String jfTableName = "pdop_data_jfext_" +suffix;
-            String queryTableName = "pdop_data_queryext_" +suffix;
-
-            try {
-                Boolean jf = tableManagerService.checkTable(jfTableName);
-                Boolean query = tableManagerService.checkTable(queryTableName);
-
-                if (query == true) {
-                    pdopQueryLogService.insertQueryExtList(queryTableName, pdopQueryLogList);
-                } else {
-                    ReturnData returnData = tableManagerService.createQueryTable(queryTableName);
-                    if (returnData.getCode().equals("OK")) {
-                        pdopQueryLogService.insertQueryExtList(queryTableName, pdopQueryLogList);
-                    }
-                }
-
-                if (jf == true) {
-                    pdopJfReqlogService.insertJfExtList(jfTableName, pdopJfReqlogList);
-                } else {
-
-                    ReturnData returnData1 = tableManagerService.createJfTable(jfTableName);
-                    if (returnData1.getCode().equals("OK")) {
-                        pdopJfReqlogService.insertJfExtList(jfTableName, pdopJfReqlogList);
-                    }
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-*/
-/*
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
-        Date date = new Date();
-        date.setMonth(date.getMonth() - 1);
-        String startDate = sdf.format(date);
-        String jfTableName = "pdop_data_jfext_" + startDate;
-        String queryTableName = "pdop_data_queryext_" + startDate;
-        System.out.println(jfTableName + "" + queryTableName);
-
-        merchantAccountService.getMerchantCountByOrgId("10001");*/
-
-        dataSourceAccountService.getDataSourceAccountById("e1087d464682403b9b84d1e8a885b6e7");
     }
 
 
