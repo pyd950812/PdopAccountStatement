@@ -59,7 +59,10 @@ public class TimedTask {
         map.put("endTime", endTime);
 
         List<PdopJfReqlog> pdopJfReqlogList = pdopJfReqlogService.selectByHour(map);
+        System.out.println(pdopJfReqlogList.size());
         List<PdopQueryLog> pdopQueryLogList = pdopQueryLogService.selectByHour(map);
+        System.out.println(pdopJfReqlogList.size());
+        System.out.println(pdopQueryLogList.size());
         if (pdopJfReqlogList.size() > 0 && pdopQueryLogList.size() > 0) {
             String jfTableName = "pdop_data_jfext_" + suffix;
             String queryTableName = "pdop_data_queryext_" + suffix;
