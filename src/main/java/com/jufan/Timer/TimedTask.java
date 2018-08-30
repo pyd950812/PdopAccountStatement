@@ -35,9 +35,9 @@ public class TimedTask {
     public void queryDataByAnHour() {
         System.out.println("进入定时任务，每隔一个小时拉取数据");
         Date d=new Date();
+        Date b= DateUtils.addDays(d,-1);
         Calendar ca = Calendar.getInstance();
-        ca.setTime(d);
-        ca.set(Calendar.DATE, ca.get(Calendar.DATE) - 1);
+        ca.setTime(b);
         ca.set(Calendar.MINUTE, 0);
         ca.set(Calendar.SECOND, 0);
         //该simple用于格式化当前时间到秒这样可以取出整点
