@@ -59,42 +59,64 @@ public class TimedTask {
         map.put("endTime", endTime);
 
         List<PdopJfReqlog> pdopJfReqlogList = pdopJfReqlogService.selectByHour(map);
-        System.out.println(pdopJfReqlogList.size());
+//        System.out.println(pdopJfReqlogList.size());
         List<PdopQueryLog> pdopQueryLogList = pdopQueryLogService.selectByHour(map);
-        System.out.println(pdopJfReqlogList.size());
-        System.out.println(pdopQueryLogList.size());
-        if (pdopJfReqlogList.size() > 0 && pdopQueryLogList.size() > 0) {
-            String jfTableName = "pdop_data_jfext_" + suffix;
-            String queryTableName = "pdop_data_queryext_" + suffix;
+//        System.out.println(pdopJfReqlogList.size());
+//        System.out.println(pdopQueryLogList.size());
+        if(pdopJfReqlogList!=null && pdopQueryLogList!=null) {
+            if (pdopJfReqlogList.size() > 0 && pdopQueryLogList.size() > 0) {
+                String jfTableName = "pdop_data_jfext_" + suffix;
+                String queryTableName = "pdop_data_queryext_" + suffix;
 
-            try {
-                Boolean jf = tableManagerService.checkTable(jfTableName);
-                Boolean query = tableManagerService.checkTable(queryTableName);
+                try {
+                    Boolean jf = tableManagerService.checkTable(jfTableName);
+                    Boolean query = tableManagerService.checkTable(queryTableName);
 
-                if (query == true) {
-                    pdopQueryLogService.insertQueryExtList(queryTableName, pdopQueryLogList);
-                } else {
-                    ReturnData returnData = tableManagerService.createQueryTable(queryTableName);
-                    if (returnData.getCode().equals("OK")) {
-                        pdopQueryLogService.insertQueryExtList(queryTableName, pdopQueryLogList);
+                    if (query == true) {
+                        System.out.println("log表的数量为"+pdopQueryLogList.size());
+                        for(int i=0;i<pdopQueryLogList.size();i++){
+                        PdopQueryLog  pdopQueryLog=pdopQueryLogList.get(i);
+                        pdopQueryLog.setId(UUID.randomUUID().toString());
+                        pdopQueryLogService.insert(pdopQueryLog);
+                        }
+
+                    } else {
+                        ReturnData returnData = tableManagerService.createQueryTable(queryTableName);
+                        if (returnData.getCode().equals("OK")) {
+                            System.out.println("log表的数量为"+pdopQueryLogList.size());
+                            for(int i=0;i<pdopQueryLogList.size();i++){
+                                PdopQueryLog  pdopQueryLog=pdopQueryLogList.get(i);
+                                pdopQueryLog.setId(UUID.randomUUID().toString());
+                                pdopQueryLogService.insert(pdopQueryLog);
+                            }
+                        }
                     }
+
+                    if (jf == true) {
+                        System.out.println("jf表的数量为"+pdopQueryLogList.size());
+                        for(int i=0;i<pdopJfReqlogList.size();i++){
+                            PdopJfReqlog  pdopJfReqlog=pdopJfReqlogList.get(i);
+                            pdopJfReqlog.setId(UUID.randomUUID().toString());
+                            pdopJfReqlogService.insert(pdopJfReqlog);
+                        }
+                    } else {
+                        System.out.println("jf表的数量为"+pdopQueryLogList.size());
+                        ReturnData returnData1 = tableManagerService.createJfTable(jfTableName);
+                        if (returnData1.getCode().equals("OK")) {
+                            for(int i=0;i<pdopJfReqlogList.size();i++){
+                                PdopJfReqlog  pdopJfReqlog=pdopJfReqlogList.get(i);
+                                pdopJfReqlog.setId(UUID.randomUUID().toString());
+                                pdopJfReqlogService.insert(pdopJfReqlog);
+                            }
+                        }
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
-                if (jf == true) {
-                    pdopJfReqlogService.insertJfExtList(jfTableName, pdopJfReqlogList);
-                } else {
-                    ReturnData returnData1 = tableManagerService.createJfTable(jfTableName);
-                    if (returnData1.getCode().equals("OK")) {
-                        pdopJfReqlogService.insertJfExtList(jfTableName, pdopJfReqlogList);
-                    }
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-
         }
-
     }
 
 
