@@ -38,4 +38,8 @@ public class PdopJfReqlogServiceImpl implements PdopJfReqlogService {
     public int insertJfExtList(String tableName, List<PdopJfReqlog> pojos) {
         return pdopJfReqlogDao.insertJfExtList(tableName,pojos);
     }
+
+    public int insertJf(String tableName, PdopJfReqlog pojo) {
+        return pdopJfReqlogDao.insertJf(tableName,pojo);
+    }
 }

@@ -38,4 +38,8 @@ public class PdopQueryLogServiceImpl  implements PdopQueryLogService{
     public int insertQueryExtList(String tableName, List<PdopQueryLog> pojos) {
         return pdopQueryLogDao.insertQueryExtList(tableName,pojos);
     }
+
+    public int insertQuery(String tableName, PdopQueryLog pojo) {
+        return pdopQueryLogDao.insertQuery(tableName,pojo);
+    }
 }

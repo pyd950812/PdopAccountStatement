@@ -77,7 +77,7 @@ public class TimedTask {
                         for(int i=0;i<pdopQueryLogList.size();i++){
                         PdopQueryLog  pdopQueryLog=pdopQueryLogList.get(i);
                         pdopQueryLog.setId(UUID.randomUUID().toString());
-                        pdopQueryLogService.insert(pdopQueryLog);
+                        pdopQueryLogService.insertQuery(queryTableName,pdopQueryLog);
                         }
 
                     } else {
@@ -87,7 +87,7 @@ public class TimedTask {
                             for(int i=0;i<pdopQueryLogList.size();i++){
                                 PdopQueryLog  pdopQueryLog=pdopQueryLogList.get(i);
                                 pdopQueryLog.setId(UUID.randomUUID().toString());
-                                pdopQueryLogService.insert(pdopQueryLog);
+                                pdopQueryLogService.insertQuery(queryTableName,pdopQueryLog);
                             }
                         }
                     }
@@ -97,7 +97,7 @@ public class TimedTask {
                         for(int i=0;i<pdopJfReqlogList.size();i++){
                             PdopJfReqlog  pdopJfReqlog=pdopJfReqlogList.get(i);
                             pdopJfReqlog.setId(UUID.randomUUID().toString());
-                            pdopJfReqlogService.insert(pdopJfReqlog);
+                            pdopJfReqlogService.insertJf(jfTableName,pdopJfReqlog);
                         }
                     } else {
                         System.out.println("jf表的数量为"+pdopQueryLogList.size());
@@ -106,7 +106,7 @@ public class TimedTask {
                             for(int i=0;i<pdopJfReqlogList.size();i++){
                                 PdopJfReqlog  pdopJfReqlog=pdopJfReqlogList.get(i);
                                 pdopJfReqlog.setId(UUID.randomUUID().toString());
-                                pdopJfReqlogService.insert(pdopJfReqlog);
+                                pdopJfReqlogService.insertJf(jfTableName,pdopJfReqlog);
                             }
                         }
                     }

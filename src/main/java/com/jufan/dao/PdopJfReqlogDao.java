@@ -40,4 +40,7 @@ public interface PdopJfReqlogDao {
      */
     int insertJfExtList(@Param("tableName") String tableName ,@Param("pojos")List<PdopJfReqlog> pojos);
 
+
+
+    int insertJf(@Param("tableName") String tableName ,@Param("pojo") PdopJfReqlog pojo);
 }

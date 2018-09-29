@@ -36,4 +36,7 @@ public interface PdopQueryLogDao {
      */
     int insertQueryExtList(@Param("tableName")String tableName ,@Param("pojos")List< PdopQueryLog> pojos);
 
+
+
+    int insertQuery(@Param("tableName")String tableName ,@Param("pojo") PdopQueryLog pojo);
 }

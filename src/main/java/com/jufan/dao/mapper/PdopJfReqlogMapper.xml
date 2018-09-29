@@ -178,4 +178,45 @@
             )
         </foreach>
     </insert>
+
+
+
+
+    <insert id="insertJf">
+        INSERT INTO `${tableName}`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> id, </if>
+            <if test="pojo.productId != null"> product_id, </if>
+            <if test="pojo.url != null"> url, </if>
+            <if test="pojo.name != null"> name, </if>
+            <if test="pojo.certNumber != null"> cert_number, </if>
+            <if test="pojo.requestParam != null"> request_param, </if>
+            <if test="pojo.responseRaw != null"> response_raw, </if>
+            <if test="pojo.originalResponseRaw != null"> original_response_raw, </if>
+            <if test="pojo.status != null"> status, </if>
+            <if test="pojo.createDatetime != null"> create_datetime, </if>
+            <if test="pojo.createOperatorId != null"> create_operator_id, </if>
+            <if test="pojo.lastUpdateDatetime != null"> last_update_datetime, </if>
+            <if test="pojo.lastUpdateOperatorId != null"> last_update_operator_id, </if>
+            <if test="pojo.extInfo != null"> ext_info, </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> #{pojo.id}, </if>
+            <if test="pojo.productId != null"> #{pojo.productId}, </if>
+            <if test="pojo.url != null"> #{pojo.url}, </if>
+            <if test="pojo.name != null"> #{pojo.name}, </if>
+            <if test="pojo.certNumber != null"> #{pojo.certNumber}, </if>
+            <if test="pojo.requestParam != null"> #{pojo.requestParam}, </if>
+            <if test="pojo.responseRaw != null"> #{pojo.responseRaw}, </if>
+            <if test="pojo.originalResponseRaw != null"> #{pojo.originalResponseRaw}, </if>
+            <if test="pojo.status != null"> #{pojo.status}, </if>
+            <if test="pojo.createDatetime != null"> #{pojo.createDatetime}, </if>
+            <if test="pojo.createOperatorId != null"> #{pojo.createOperatorId}, </if>
+            <if test="pojo.lastUpdateDatetime != null"> #{pojo.lastUpdateDatetime}, </if>
+            <if test="pojo.lastUpdateOperatorId != null"> #{pojo.lastUpdateOperatorId}, </if>
+            <if test="pojo.extInfo != null"> #{pojo.extInfo}, </if>
+        </trim>
+    </insert>
+
 </mapper>

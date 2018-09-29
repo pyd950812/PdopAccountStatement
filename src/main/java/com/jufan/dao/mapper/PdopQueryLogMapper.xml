@@ -157,4 +157,36 @@
         </foreach>
     </insert>
 
+
+    <insert id="insertQuery">
+        INSERT INTO `${tableName}`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> id, </if>
+            <if test="pojo.productId != null"> product_id, </if>
+            <if test="pojo.orgId != null"> org_id, </if>
+            <if test="pojo.userId != null"> user_id, </if>
+            <if test="pojo.dataSourceId != null"> data_source_id, </if>
+            <if test="pojo.jfReqlogId != null"> jf_reqlog_id, </if>
+            <if test="pojo.batchId != null"> batch_id, </if>
+            <if test="pojo.requestParam != null"> request_param, </if>
+            <if test="pojo.createDatetime != null"> create_datetime, </if>
+            <if test="pojo.queryType != null"> query_type, </if>
+            <if test="pojo.isCharge != null"> is_charge, </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> #{pojo.id}, </if>
+            <if test="pojo.productId != null"> #{pojo.productId}, </if>
+            <if test="pojo.orgId != null"> #{pojo.orgId}, </if>
+            <if test="pojo.userId != null"> #{pojo.userId}, </if>
+            <if test="pojo.dataSourceId != null"> #{pojo.dataSourceId}, </if>
+            <if test="pojo.jfReqlogId != null"> #{pojo.jfReqlogId}, </if>
+            <if test="pojo.batchId != null"> #{pojo.batchId}, </if>
+            <if test="pojo.requestParam != null"> #{pojo.requestParam}, </if>
+            <if test="pojo.createDatetime != null"> #{pojo.createDatetime}, </if>
+            <if test="pojo.queryType != null"> #{pojo.queryType}, </if>
+            <if test="pojo.isCharge != null"> #{pojo.isCharge}, </if>
+        </trim>
+    </insert>
+
 </mapper>

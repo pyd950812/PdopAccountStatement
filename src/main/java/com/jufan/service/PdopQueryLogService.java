@@ -22,7 +22,7 @@ public interface PdopQueryLogService {
 
     public int insertQueryExtList(String tableName,List< PdopQueryLog> pojos);
 
-
+    public int insertQuery(String tableName,PdopQueryLog pojo);
 }
 
 
